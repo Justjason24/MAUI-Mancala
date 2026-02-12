@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mancala.MancalaPage"
-             Title="MancalaPage">
+             xmlns:local="clr-namespace:Mancala"
+             x:Class="Mancala.MancalaPage">
+
 
 
 
@@ -31,7 +32,9 @@
                   RowDefinitions="*,*,*,*,*,*"
                   ColumnDefinitions="*,*">
 
-                <Ellipse x:Name="Pit00" Grid.Row="0" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+
+
+            <Ellipse x:Name="Pit00" Grid.Row="0" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
                 <Ellipse x:Name="Pit10" Grid.Row="1" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
                 <Ellipse x:Name="Pit20" Grid.Row="2" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
                 <Ellipse x:Name="Pit30" Grid.Row="3" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
@@ -43,9 +46,31 @@
                 <Ellipse x:Name="Pit21" Grid.Row="2" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
                 <Ellipse x:Name="Pit31" Grid.Row="3" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
                 <Ellipse x:Name="Pit41" Grid.Row="4" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-                <Ellipse x:Name="Pit51" Grid.Row="5" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+            <Ellipse x:Name="Pit51"
+         Grid.Row="5"
+         Grid.Column="1"
+         Fill="#ffc18c"
+         HeightRequest="60"
+         WidthRequest="60">
+                <Ellipse.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Pit51_Tapped" />
+                </Ellipse.GestureRecognizers>
+            </Ellipse>
 
-            </Grid>
+
+            <!-- Pebble (black circle) initially in Pit51 -->
+            <GraphicsView
+                        x:Name="Pebble"
+                        HeightRequest="20"
+                        WidthRequest="20"
+                        Grid.Row="5"
+                        Grid.Column="1">
+                <GraphicsView.Drawable>
+                    <local:CircleDrawable />
+                </GraphicsView.Drawable>
+            </GraphicsView>
+
+        </Grid>
 
             <!--bottom store-->
             <Border Grid.Row="2"
@@ -57,8 +82,5 @@
                     StrokeShape="RoundRectangle 30" />
 
     </Grid>
-
-
-
 
 </ContentPage>
