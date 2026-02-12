@@ -1,4 +1,6 @@
 
+using Microsoft.Maui.Controls.Shapes;
+
 namespace Mancala;
 
 public partial class MancalaPage : ContentPage
@@ -31,6 +33,65 @@ public partial class MancalaPage : ContentPage
         // Reset translation after moving grid cell
         Pebble.TranslationX = 0;
         Pebble.TranslationY = 0;
+    }
+
+    private async void TestMethod_Tapped(object sender, EventArgs e)
+    {
+        //var board = new int[14];
+
+        //var idk = (View)sender;
+        //var mancalaBoard = (Layout)idk.Parent; // YES We have the children objects in this variable! 
+
+        //var pieces = mancalaBoard.Children.ToList();
+        //var piece = (Shape)pieces.FirstOrDefault().id
+
+        if(sender is Grid grid)
+        {
+            Console.WriteLine();
+        }
+
+        //if (sender is View view)
+        //{
+        //    var mancalaBoardGrid = MancalaHelper.GetParentGrid(view);
+
+        //    foreach (var child in mancalaBoardGrid.Children)
+        //    {
+        //        int row = Grid.GetRow((View)child);
+        //        int col = Grid.GetColumn((View)child);
+        //        string name = (View)child.
+
+        //        Console.WriteLine();
+        //    }
+
+
+        //}
+
+        if (sender is View view)
+        {
+            var mancalaBoardGrid = MancalaHelper.GetParentGrid(view);
+
+            var children = MancalaHelper.GetGridChildrenWithPositions(mancalaBoardGrid);
+            var listedChildren = children.ToList();
+
+            foreach (var child in children)
+            {
+                Console.WriteLine();
+            }
+
+        }
+
+        Console.WriteLine();
+        Block.TranslationX = 0;
+        Block.TranslationY = 0;
+
+        await Block.TranslateTo(0, 70, 400, Easing.BounceOut);
+
+        Grid.SetRow(Block, 1);
+        Grid.SetColumn(Block, 0);
+
+        Block.TranslationX = 0;
+        Block.TranslationY = 0;
+
     }
 
 

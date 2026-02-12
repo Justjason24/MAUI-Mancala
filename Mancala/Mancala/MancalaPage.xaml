@@ -7,15 +7,17 @@
 
 
 
+    <!-- Mancala Board -->
     <Grid RowDefinitions="Auto, *, Auto"
             ColumnDefinitions="*"
             Padding="20"
+            x:Name="MancalaBoard"
             BackgroundColor="#84240c"
             HorizontalOptions="Center"
             VerticalOptions="Center">
 
         <!-- Top bank -->
-            <Border
+        <Border
             Grid.Row="0"
             HeightRequest="80"
             WidthRequest="250"
@@ -25,7 +27,7 @@
             StrokeShape="RoundRectangle 30"/>
 
         <!-- Pebble pools 2x6 -->
-            <Grid Grid.Row="1"
+        <Grid Grid.Row="1"
                   ColumnSpacing="10"
                   Padding="10"
                   RowSpacing="10"
@@ -35,25 +37,26 @@
 
 
             <Ellipse x:Name="Pit00" Grid.Row="0" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-                <Ellipse x:Name="Pit10" Grid.Row="1" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-                <Ellipse x:Name="Pit20" Grid.Row="2" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-                <Ellipse x:Name="Pit30" Grid.Row="3" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-                <Ellipse x:Name="Pit40" Grid.Row="4" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-                <Ellipse x:Name="Pit50" Grid.Row="5" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+            <Ellipse x:Name="Pit10" Grid.Row="1" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+            <Ellipse x:Name="Pit20" Grid.Row="2" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+            <Ellipse x:Name="Pit30" Grid.Row="3" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+            <Ellipse x:Name="Pit40" Grid.Row="4" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+            <Ellipse x:Name="Pit50" Grid.Row="5" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
 
-                <Ellipse x:Name="Pit01" Grid.Row="0" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-                <Ellipse x:Name="Pit11" Grid.Row="1" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-                <Ellipse x:Name="Pit21" Grid.Row="2" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-                <Ellipse x:Name="Pit31" Grid.Row="3" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-                <Ellipse x:Name="Pit41" Grid.Row="4" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+            <Ellipse x:Name="Pit01" Grid.Row="0" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+            <Ellipse x:Name="Pit11" Grid.Row="1" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+            <Ellipse x:Name="Pit21" Grid.Row="2" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+            <Ellipse x:Name="Pit31" Grid.Row="3" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+            <Ellipse x:Name="Pit41" Grid.Row="4" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
             <Ellipse x:Name="Pit51"
-         Grid.Row="5"
-         Grid.Column="1"
-         Fill="#ffc18c"
-         HeightRequest="60"
-         WidthRequest="60">
-                <Ellipse.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="Pit51_Tapped" />
+                     Grid.Row="5"
+                     Grid.Column="1"
+                     Fill="#ffc18c"
+                     HeightRequest="60"
+                     WidthRequest="60">
+                    <Ellipse.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Pit51_Tapped" />
+                        <TapGestureRecognizer Tapped="TestMethod_Tapped" />
                 </Ellipse.GestureRecognizers>
             </Ellipse>
 
@@ -70,10 +73,20 @@
                 </GraphicsView.Drawable>
             </GraphicsView>
 
+            <Rectangle
+                x:Name="Block"
+                HeightRequest="20"
+                Fill="Azure"
+                WidthRequest="30"
+                Grid.Row="0"
+                Grid.Column="0">
+                
+            </Rectangle>
+
         </Grid>
 
-            <!--bottom store-->
-            <Border Grid.Row="2"
+        <!--bottom store-->
+        <Border Grid.Row="2"
                     HeightRequest="80"
                     WidthRequest="250"
                     Background="#ffc18c"
