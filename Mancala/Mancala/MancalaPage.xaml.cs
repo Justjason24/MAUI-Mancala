@@ -37,34 +37,6 @@ public partial class MancalaPage : ContentPage
 
     private async void TestMethod_Tapped(object sender, EventArgs e)
     {
-        //var board = new int[14];
-
-        //var idk = (View)sender;
-        //var mancalaBoard = (Layout)idk.Parent; // YES We have the children objects in this variable! 
-
-        //var pieces = mancalaBoard.Children.ToList();
-        //var piece = (Shape)pieces.FirstOrDefault().id
-
-        if(sender is Grid grid)
-        {
-            Console.WriteLine();
-        }
-
-        //if (sender is View view)
-        //{
-        //    var mancalaBoardGrid = MancalaHelper.GetParentGrid(view);
-
-        //    foreach (var child in mancalaBoardGrid.Children)
-        //    {
-        //        int row = Grid.GetRow((View)child);
-        //        int col = Grid.GetColumn((View)child);
-        //        string name = (View)child.
-
-        //        Console.WriteLine();
-        //    }
-
-
-        //}
 
         if (sender is View view)
         {
@@ -72,11 +44,6 @@ public partial class MancalaPage : ContentPage
 
             var children = MancalaHelper.GetGridChildrenWithPositions(mancalaBoardGrid);
             var listedChildren = children.ToList();
-
-            foreach (var child in children)
-            {
-                Console.WriteLine();
-            }
 
         }
 
