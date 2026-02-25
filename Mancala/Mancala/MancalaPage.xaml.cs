@@ -47,17 +47,21 @@ public partial class MancalaPage : ContentPage
 
         }
 
+
+        ((PitDrawable)Pit00View.Drawable).PebbleCount = 7;
+        Pit00View.Invalidate();
         Console.WriteLine();
-        Block.TranslationX = 0;
-        Block.TranslationY = 0;
 
-        await Block.TranslateTo(0, 70, 400, Easing.BounceOut);
+        //Block.TranslationX = 0;
+        //Block.TranslationY = 0;
 
-        Grid.SetRow(Block, 1);
-        Grid.SetColumn(Block, 0);
+        //await Block.TranslateTo(0, 70, 400, Easing.BounceOut);
 
-        Block.TranslationX = 0;
-        Block.TranslationY = 0;
+        //Grid.SetRow(Block, 1);
+        //Grid.SetColumn(Block, 0);
+
+        //Block.TranslationX = 0;
+        //Block.TranslationY = 0;
 
     }
 
