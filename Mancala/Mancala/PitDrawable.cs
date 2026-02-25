@@ -24,8 +24,13 @@ namespace Mancala
                 //double x = i++;
                 //double y = i++;
 
-                canvas.FillColor = Colors.Black;
+                canvas.FillColor = Colors.White;
                 canvas.FillCircle((float)x, (float)y, (float)radius);
+
+                canvas.StrokeColor = Colors.Black;
+                canvas.StrokeSize = 2;
+                canvas.DrawCircle((float)x, (float)y, (float)radius);
+
 
             }
         }
