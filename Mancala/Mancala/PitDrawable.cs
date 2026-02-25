@@ -11,6 +11,17 @@ namespace Mancala
         public int PebbleCount { get; set; }
         public void Draw(ICanvas canvas, RectF rect)
         {
+            float pitRadius = Math.Min(rect.Width, rect.Height) / 2f;
+
+            // 1. Draw pit background
+            canvas.FillColor = Color.FromArgb("#ffc18c");
+            canvas.FillCircle(rect.Center.X, rect.Center.Y, pitRadius);
+
+            canvas.StrokeColor = Colors.Azure;
+            canvas.StrokeSize = 2;
+            canvas.DrawCircle(rect.Center.X, rect.Center.Y, pitRadius);
+
+
             double radius = 6;
             //double padding = .5;
 

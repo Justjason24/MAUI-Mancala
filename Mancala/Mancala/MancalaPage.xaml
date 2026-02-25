@@ -39,17 +39,26 @@
 
 
 
-            <Ellipse x:Name="Pit00" Grid.Row="0" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+            <!--<Ellipse x:Name="Pit00" Grid.Row="0" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />-->
             <GraphicsView x:Name="Pit00View"
               HeightRequest="60"
               WidthRequest="60"
+              Grid.Row="0"
+              Grid.Column="0"
                      >
                 <GraphicsView.Drawable>
                     <local:PitDrawable PebbleCount="4"/>
                 </GraphicsView.Drawable>
             </GraphicsView>
 
-            <Ellipse x:Name="Pit10" Grid.Row="1" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+            <!--<Ellipse x:Name="Pit10" Grid.Row="1" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />-->
+            <GraphicsView x:Name="Pit10" HeightRequest="60" WidthRequest="60" Grid.Row="1" Grid.Column="0">
+                <GraphicsView.Drawable>
+                    <local:PitDrawable PebbleCount="4"/>
+                </GraphicsView.Drawable>
+            </GraphicsView>
+
+
             <Ellipse x:Name="Pit20" Grid.Row="2" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
             <Ellipse x:Name="Pit30" Grid.Row="3" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
             <Ellipse x:Name="Pit40" Grid.Row="4" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
