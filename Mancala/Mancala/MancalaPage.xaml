@@ -40,7 +40,7 @@
 
 
             <!--<Ellipse x:Name="Pit00" Grid.Row="0" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />-->
-            <GraphicsView x:Name="Pit00View"
+            <GraphicsView x:Name="Pit00"
               HeightRequest="60"
               WidthRequest="60"
               Grid.Row="0"
@@ -57,14 +57,68 @@
                     <local:PitDrawable PebbleCount="4"/>
                 </GraphicsView.Drawable>
             </GraphicsView>
+            
+            <GraphicsView x:Name="Pit20" HeightRequest="60" WidthRequest="60" Grid.Row="2" Grid.Column="0">
+                <GraphicsView.Drawable>
+                    <local:PitDrawable PebbleCount="4"/>
+                </GraphicsView.Drawable>
+            </GraphicsView>
 
+            <GraphicsView x:Name="Pit30" HeightRequest="60" WidthRequest="60" Grid.Row="3" Grid.Column="0">
+                <GraphicsView.Drawable>
+                    <local:PitDrawable PebbleCount="4"/>
+                </GraphicsView.Drawable>
+            </GraphicsView>
 
-            <Ellipse x:Name="Pit20" Grid.Row="2" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-            <Ellipse x:Name="Pit30" Grid.Row="3" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-            <Ellipse x:Name="Pit40" Grid.Row="4" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-            <Ellipse x:Name="Pit50" Grid.Row="5" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+            <GraphicsView x:Name="Pit40" HeightRequest="60" WidthRequest="60" Grid.Row="4" Grid.Column="0">
+                <GraphicsView.Drawable>
+                    <local:PitDrawable PebbleCount="4"/>
+                </GraphicsView.Drawable>
+            </GraphicsView>
 
-            <Ellipse x:Name="Pit01" Grid.Row="0" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
+            <GraphicsView x:Name="Pit50" HeightRequest="60" WidthRequest="60" Grid.Row="5" Grid.Column="0">
+                <GraphicsView.Drawable>
+                    <local:PitDrawable PebbleCount="4"/>
+                </GraphicsView.Drawable>
+            </GraphicsView>
+
+            <GraphicsView x:Name="Pit01" HeightRequest="60" WidthRequest="60" Grid.Row="0" Grid.Column="1">
+                <GraphicsView.Drawable>
+                    <local:PitDrawable PebbleCount="4"/>
+                </GraphicsView.Drawable>
+            </GraphicsView>
+
+            <GraphicsView x:Name="Pit11" HeightRequest="60" WidthRequest="60" Grid.Row="1" Grid.Column="1">
+                <GraphicsView.Drawable>
+                    <local:PitDrawable PebbleCount="4"/>
+                </GraphicsView.Drawable>
+            </GraphicsView>
+
+            <GraphicsView x:Name="Pit21" HeightRequest="60" WidthRequest="60" Grid.Row="2" Grid.Column="1">
+                <GraphicsView.Drawable>
+                    <local:PitDrawable PebbleCount="4"/>
+                </GraphicsView.Drawable>
+            </GraphicsView>
+
+            <GraphicsView x:Name="Pit31" HeightRequest="60" WidthRequest="60" Grid.Row="3" Grid.Column="1">
+                <GraphicsView.Drawable>
+                    <local:PitDrawable PebbleCount="4"/>
+                </GraphicsView.Drawable>
+            </GraphicsView>
+
+            <GraphicsView x:Name="Pit41" HeightRequest="60" WidthRequest="60" Grid.Row="4" Grid.Column="1">
+                <GraphicsView.Drawable>
+                    <local:PitDrawable PebbleCount="4"/>
+                </GraphicsView.Drawable>
+            </GraphicsView>
+
+            <GraphicsView x:Name="Pit51" HeightRequest="60" WidthRequest="60" Grid.Row="5" Grid.Column="1">
+                <GraphicsView.Drawable>
+                    <local:PitDrawable PebbleCount="4"/>
+                </GraphicsView.Drawable>
+            </GraphicsView>
+            
+            <!--<Ellipse x:Name="Pit01" Grid.Row="0" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
             <Ellipse x:Name="Pit11" Grid.Row="1" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
             <Ellipse x:Name="Pit21" Grid.Row="2" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
             <Ellipse x:Name="Pit31" Grid.Row="3" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
@@ -79,7 +133,7 @@
                         <TapGestureRecognizer Tapped="Pit51_Tapped" />
                         <TapGestureRecognizer Tapped="TestMethod_Tapped" />
                 </Ellipse.GestureRecognizers>
-            </Ellipse>
+            </Ellipse>-->
 
 
             <!-- Pebble (black circle) initially in Pit51 -->
