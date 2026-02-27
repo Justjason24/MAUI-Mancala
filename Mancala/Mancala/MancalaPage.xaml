@@ -118,26 +118,10 @@
                 </GraphicsView.Drawable>
             </GraphicsView>
             
-            <!--<Ellipse x:Name="Pit01" Grid.Row="0" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-            <Ellipse x:Name="Pit11" Grid.Row="1" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-            <Ellipse x:Name="Pit21" Grid.Row="2" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-            <Ellipse x:Name="Pit31" Grid.Row="3" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-            <Ellipse x:Name="Pit41" Grid.Row="4" Grid.Column="1" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />
-            <Ellipse x:Name="Pit51"
-                     Grid.Row="5"
-                     Grid.Column="1"
-                     Fill="#ffc18c"
-                     HeightRequest="60"
-                     WidthRequest="60">
-                    <Ellipse.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Pit51_Tapped" />
-                        <TapGestureRecognizer Tapped="TestMethod_Tapped" />
-                </Ellipse.GestureRecognizers>
-            </Ellipse>-->
 
 
             <!-- Pebble (black circle) initially in Pit51 -->
-            <GraphicsView
+            <!--<GraphicsView
                         x:Name="Pebble"
                         HeightRequest="20"
                         WidthRequest="20"
@@ -146,7 +130,7 @@
                 <GraphicsView.Drawable>
                     <local:CircleDrawable />
                 </GraphicsView.Drawable>
-            </GraphicsView>
+            </GraphicsView>-->
 
             <!--<Rectangle
                 x:Name="Block"

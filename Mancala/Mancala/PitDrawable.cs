@@ -27,13 +27,43 @@ namespace Mancala
 
             var rng = new Random();
 
-            for (int i = 0; i < PebbleCount; i++)
-            {
-                double x = (rng.NextDouble() * (rect.Width - radius * 2)) + radius;
-                double y = (rng.NextDouble() * (rect.Height - radius * 2)) + radius;
+            //for (int i = 0; i < PebbleCount; i++)
+            //{
+            //    //double x = (rng.NextDouble() * (rect.Width - radius * 2)) + radius;
+            //    //double y = (rng.NextDouble() * (rect.Height - radius * 2)) + radius;
 
-                //double x = i++;
-                //double y = i++;
+            //    double x = 30;
+            //    double y = 30;
+
+            //    canvas.FillColor = Colors.White;
+            //    canvas.FillCircle((float)x, (float)y, (float)radius);
+
+            //    canvas.StrokeColor = Colors.Black;
+            //    canvas.StrokeSize = 2;
+            //    canvas.DrawCircle((float)x, (float)y, (float)radius);
+
+
+            //}
+
+
+            // TODO - REWORK THIS LATER!!! 
+            if(PebbleCount == 1)
+            {
+                double x = 30;
+                double y = 30;
+
+                canvas.FillColor = Colors.White;
+                canvas.FillCircle((float)x, (float)y, (float)radius);
+
+                canvas.StrokeColor = Colors.Black;
+                canvas.StrokeSize = 2;
+                canvas.DrawCircle((float)x, (float)y, (float)radius);
+            }
+
+            else if(PebbleCount == 2)
+            {
+                double x = 25;
+                double y = 30;
 
                 canvas.FillColor = Colors.White;
                 canvas.FillCircle((float)x, (float)y, (float)radius);
@@ -42,7 +72,108 @@ namespace Mancala
                 canvas.StrokeSize = 2;
                 canvas.DrawCircle((float)x, (float)y, (float)radius);
 
+                 x = 35;
+                 y = 30;
 
+                canvas.FillColor = Colors.White;
+                canvas.FillCircle((float)x, (float)y, (float)radius);
+
+                canvas.StrokeColor = Colors.Black;
+                canvas.StrokeSize = 2;
+                canvas.DrawCircle((float)x, (float)y, (float)radius);
+            }
+
+            else if(PebbleCount == 3)
+            {
+                double x = 25;
+                double y = 35;
+
+                canvas.FillColor = Colors.White;
+                canvas.FillCircle((float)x, (float)y, (float)radius);
+
+                canvas.StrokeColor = Colors.Black;
+                canvas.StrokeSize = 2;
+                canvas.DrawCircle((float)x, (float)y, (float)radius);
+
+                x = 35;
+                y = 35;
+
+                canvas.FillColor = Colors.White;
+                canvas.FillCircle((float)x, (float)y, (float)radius);
+
+                canvas.StrokeColor = Colors.Black;
+                canvas.StrokeSize = 2;
+                canvas.DrawCircle((float)x, (float)y, (float)radius);
+
+                x = 30;
+                y = 25;
+
+                canvas.FillColor = Colors.White;
+                canvas.FillCircle((float)x, (float)y, (float)radius);
+
+                canvas.StrokeColor = Colors.Black;
+                canvas.StrokeSize = 2;
+                canvas.DrawCircle((float)x, (float)y, (float)radius);
+            }
+
+            else if (PebbleCount == 4)
+            {
+                double x = 25;
+                double y = 25;
+
+                canvas.FillColor = Colors.White;
+                canvas.FillCircle((float)x, (float)y, (float)radius);
+
+                canvas.StrokeColor = Colors.Black;
+                canvas.StrokeSize = 2;
+                canvas.DrawCircle((float)x, (float)y, (float)radius);
+
+                x = 25;
+                y = 35;
+
+                canvas.FillColor = Colors.White;
+                canvas.FillCircle((float)x, (float)y, (float)radius);
+
+                canvas.StrokeColor = Colors.Black;
+                canvas.StrokeSize = 2;
+                canvas.DrawCircle((float)x, (float)y, (float)radius);
+
+                x = 35;
+                y = 25;
+
+                canvas.FillColor = Colors.White;
+                canvas.FillCircle((float)x, (float)y, (float)radius);
+
+                canvas.StrokeColor = Colors.Black;
+                canvas.StrokeSize = 2;
+                canvas.DrawCircle((float)x, (float)y, (float)radius);
+
+                x = 35;
+                y = 35;
+
+                canvas.FillColor = Colors.White;
+                canvas.FillCircle((float)x, (float)y, (float)radius);
+
+                canvas.StrokeColor = Colors.Black;
+                canvas.StrokeSize = 2;
+                canvas.DrawCircle((float)x, (float)y, (float)radius);
+            }
+            else
+            {
+                for (int i = 0; i < PebbleCount; i++)
+                {
+                    double x = (rng.NextDouble() * (rect.Width - radius * 2)) + radius;
+                    double y = (rng.NextDouble() * (rect.Height - radius * 2)) + radius;
+
+                    canvas.FillColor = Colors.White;
+                    canvas.FillCircle((float)x, (float)y, (float)radius);
+
+                    canvas.StrokeColor = Colors.Black;
+                    canvas.StrokeSize = 2;
+                    canvas.DrawCircle((float)x, (float)y, (float)radius);
+
+
+                }
             }
         }
     }
