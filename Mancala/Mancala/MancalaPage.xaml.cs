@@ -10,60 +10,30 @@ public partial class MancalaPage : ContentPage
         InitializeComponent();
     }
 
-
-    private async void Button_Clicked(object sender, EventArgs e)
+    private void OnPitTapped(object sender, EventArgs e)
     {
-        // Navigate to the specified URL in the system browser.
-        await Launcher.Default.OpenAsync("https://espn.com");
-    }
-
-    //private async void Pit51_Tapped(object sender, EventArgs e)
-    //{
-    //    // Move the pebble from Pit51 (row 5, col 1) to Pit41 (row 4, col 1)
-    //    Pebble.TranslationX = 0;
-    //    Pebble.TranslationY = 0;
-
-    //    // Animate upward by one row (approx 70px depending on spacing)
-    //    await Pebble.TranslateTo(0, -70, 400, Easing.CubicInOut);
-
-    //    // Snap pebble into Pit41 grid cell
-    //    Grid.SetRow(Pebble, 4);
-    //    Grid.SetColumn(Pebble, 1);
-
-    //    // Reset translation after moving grid cell
-    //    Pebble.TranslationX = 0;
-    //    Pebble.TranslationY = 0;
-    //}
-
-    private async void TestMethod_Tapped(object sender, EventArgs e)
-    {
-
-        if (sender is View view)
+        if(sender is GraphicsView tappedPit && tappedPit.Equals(Pit51))
         {
-            var mancalaBoardGrid = MancalaHelper.GetParentGrid(view);
+            if(tappedPit.Drawable is PitDrawable pitDrawable)
+            {
+                int pebblesToMove = pitDrawable.PebbleCount; // so moving 4 to start
 
-            var children = MancalaHelper.GetGridChildrenWithPositions(mancalaBoardGrid);
-            var listedChildren = children.ToList();
-
+                if(pebblesToMove > 0)
+                {
+                    pitDrawable.PebbleCount = 0;
+                    tappedPit.Invalidate(); // Do I move this around with the line above?
+                    Console.WriteLine("Pit 51 clicked");
+                    DistributePebbles(tappedPit, pebblesToMove);
+                }
+            }
         }
 
 
-        //((PitDrawable)Pit00.Drawable).PebbleCount = 7;
-        //Pit00.Invalidate();
-        Console.WriteLine();
-
-        //Block.TranslationX = 0;
-        //Block.TranslationY = 0;
-
-        //await Block.TranslateTo(0, 70, 400, Easing.BounceOut);
-
-        //Grid.SetRow(Block, 1);
-        //Grid.SetColumn(Block, 0);
-
-        //Block.TranslationX = 0;
-        //Block.TranslationY = 0;
-
     }
 
+    private void DistributePebbles(GraphicsView startingPit, int pebblesToMove)
+    {
+        DisplayAlert("Alert", "Pit 51 tapped!", "OK");
+    }
 
 }

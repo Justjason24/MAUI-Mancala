@@ -14,7 +14,7 @@
     <Grid RowDefinitions="Auto, *, Auto"
             ColumnDefinitions="*"
             Padding="20"
-            x:Name="MancalaBoard"
+            x:Name="MancalaBoardLayout"
             BackgroundColor="#84240c"
             HorizontalOptions="Center"
             VerticalOptions="Center">
@@ -113,6 +113,9 @@
             </GraphicsView>
 
             <GraphicsView x:Name="Pit51" HeightRequest="60" WidthRequest="60" Grid.Row="5" Grid.Column="1">
+                <GraphicsView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnPitTapped" NumberOfTapsRequired="1" />
+                </GraphicsView.GestureRecognizers>
                 <GraphicsView.Drawable>
                     <local:PitDrawable PebbleCount="4"/>
                 </GraphicsView.Drawable>
