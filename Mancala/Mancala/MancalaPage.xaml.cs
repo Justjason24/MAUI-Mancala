@@ -48,8 +48,8 @@ public partial class MancalaPage : ContentPage
         }
 
 
-        ((PitDrawable)Pit00.Drawable).PebbleCount = 7;
-        Pit00.Invalidate();
+        //((PitDrawable)Pit00.Drawable).PebbleCount = 7;
+        //Pit00.Invalidate();
         Console.WriteLine();
 
         //Block.TranslationX = 0;

@@ -66,49 +66,49 @@
 
             <GraphicsView x:Name="Pit30" HeightRequest="60" WidthRequest="60" Grid.Row="3" Grid.Column="0">
                 <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="9"/>
+                    <local:PitDrawable PebbleCount="4"/>
                 </GraphicsView.Drawable>
             </GraphicsView>
 
             <GraphicsView x:Name="Pit40" HeightRequest="60" WidthRequest="60" Grid.Row="4" Grid.Column="0">
                 <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="2"/>
+                    <local:PitDrawable PebbleCount="4"/>
                 </GraphicsView.Drawable>
             </GraphicsView>
 
             <GraphicsView x:Name="Pit50" HeightRequest="60" WidthRequest="60" Grid.Row="5" Grid.Column="0">
                 <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="0"/>
+                    <local:PitDrawable PebbleCount="4"/>
                 </GraphicsView.Drawable>
             </GraphicsView>
 
             <GraphicsView x:Name="Pit01" HeightRequest="60" WidthRequest="60" Grid.Row="0" Grid.Column="1">
                 <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="1"/>
+                    <local:PitDrawable PebbleCount="4"/>
                 </GraphicsView.Drawable>
             </GraphicsView>
 
             <GraphicsView x:Name="Pit11" HeightRequest="60" WidthRequest="60" Grid.Row="1" Grid.Column="1">
                 <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="6"/>
+                    <local:PitDrawable PebbleCount="4"/>
                 </GraphicsView.Drawable>
             </GraphicsView>
 
             <GraphicsView x:Name="Pit21" HeightRequest="60" WidthRequest="60" Grid.Row="2" Grid.Column="1">
                 <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="8"/>
+                    <local:PitDrawable PebbleCount="4"/>
                 </GraphicsView.Drawable>
             </GraphicsView>
 
             <GraphicsView x:Name="Pit31" HeightRequest="60" WidthRequest="60" Grid.Row="3" Grid.Column="1">
                 <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="6"/>
+                    <local:PitDrawable PebbleCount="4"/>
                 </GraphicsView.Drawable>
             </GraphicsView>
 
             <GraphicsView x:Name="Pit41" HeightRequest="60" WidthRequest="60" Grid.Row="4" Grid.Column="1">
                 <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="2"/>
+                    <local:PitDrawable PebbleCount="4"/>
                 </GraphicsView.Drawable>
             </GraphicsView>
 
