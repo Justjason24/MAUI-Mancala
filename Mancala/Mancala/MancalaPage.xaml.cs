@@ -34,7 +34,7 @@ public partial class MancalaPage : ContentPage
                 int pebblesToMove = pitDrawable.PebbleCount;
                 if (pebblesToMove > 0)
                 {
-                    await DistributePebbles(pebblesToMove);
+                    DistributePebbles(pebblesToMove).ConfigureAwait(false);
                     // Clear the pebbles from the tapped pit
                     pitDrawable.PebbleCount = 0;
                     tappedPit.Invalidate(); 

@@ -1,0 +1,9 @@
+﻿I think I need to temporarily comment out Tanner's code and hard code pebble layouts in the pits for now.
+This is because I need to Invalidate() the Pit to clear it and animate the group of pebbles towards the next pit. 
+
+Example. 
+All pits have 4 pebbles to start with that all look the same. 
+I click Pit51 and all 4 pebbles should translate() up towards Pit41's center.
+At that point there would be 5 pebbles in Pit41
+Then 3 pebbles (in their predefined shape of 3) would Translate() up towards Pit31. 
+
