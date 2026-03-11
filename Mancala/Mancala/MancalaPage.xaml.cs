@@ -20,7 +20,7 @@ public partial class MancalaPage : ContentPage
 
     }
 
-    private void OnPitTapped(object sender, TappedEventArgs e)
+    private async void OnPitTapped(object sender, TappedEventArgs e)
     {
         // We're specifically interested in the pit that was tapped, which is 'sender'
         if (sender is GraphicsView tappedPit)
@@ -34,7 +34,7 @@ public partial class MancalaPage : ContentPage
                 int pebblesToMove = pitDrawable.PebbleCount;
                 if (pebblesToMove > 0)
                 {
-                    DistributePebbles(pebblesToMove);
+                    await DistributePebbles(pebblesToMove);
                     // Clear the pebbles from the tapped pit
                     pitDrawable.PebbleCount = 0;
                     tappedPit.Invalidate(); 
@@ -76,7 +76,7 @@ public partial class MancalaPage : ContentPage
         }
         Console.WriteLine("Calculated pit positions.");
     }
-    private async void DistributePebbles(int pebblesToDistribute)
+    private async Task DistributePebbles(int pebblesToDistribute)
     {
         Console.WriteLine($"Starting to distribute {pebblesToDistribute} pebbles from pit index {_currentPitIndex}.");
         // Ensure positions are calculated before starting animation
