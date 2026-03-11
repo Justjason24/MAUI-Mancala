@@ -8,8 +8,6 @@
              x:Class="Mancala.MancalaPage">
 
 
-
-
     <!-- Mancala Board -->
     <Grid RowDefinitions="Auto, *, Auto"
             ColumnDefinitions="*"
@@ -18,6 +16,7 @@
             BackgroundColor="#84240c"
             HorizontalOptions="Center"
             VerticalOptions="Center">
+
 
         <!-- Top bank -->
         <Border
@@ -35,7 +34,8 @@
                   Padding="10"
                   RowSpacing="10"
                   RowDefinitions="*,*,*,*,*,*"
-                  ColumnDefinitions="*,*">
+                  ColumnDefinitions="*,*"
+                  x:Name="PitsGrid">
 
 
 
@@ -155,6 +155,13 @@
                     Stroke="Black"
                     StrokeThickness="2"
                     StrokeShape="RoundRectangle 30" />
+
+        <!--<Ellipse Fill="Yellow"
+             WidthRequest="20"
+             HeightRequest="20"
+             AbsoluteLayout.LayoutBounds="300,800,20,20"
+             AbsoluteLayout.LayoutFlags="None" />-->
+
 
     </Grid>
 

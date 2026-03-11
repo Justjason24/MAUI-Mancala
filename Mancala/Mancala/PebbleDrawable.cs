@@ -17,6 +17,7 @@ namespace Mancala
             canvas.StrokeColor = Colors.Black;
             canvas.StrokeSize = 2;
             canvas.DrawCircle(rect.Center.X, rect.Center.Y, radius);
+
         }
     }
 }

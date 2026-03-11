@@ -1,0 +1,30 @@
+﻿1. Start in MancalaPage.xaml.cs and define our Pits in a List<GraphicsView>. It looks like the c# backing code fires first
+2. CalculatePitPosition() for first time. Returns early because at this point in time, the pits have not been drawn and width = -1
+3. Conclude code execution in the MancalaPage.xaml.cs constuctor. Now we flow through the Mancala.xaml code and draw each Pit.
+4. We see the application. Ready for Tap Gesture.
+5. Click the pit to activate tap gesture. This will remove the pebbles from the pit via the .Invalidate() method.
+6. Recalculate the position of the pits.
+7. DistributePebbles() animation is effed -- TODO 
+
+
+# Think Area
+Pit 51:
+X: 155
+Y: 360
+
+currentPebbleStartBounds:
+X: 175
+y: 460
+center x: 205
+center y: 490
+bounds: 60
+
+
+This was commented out. You may want to uncomment later in MancalaPage.xaml.cs
+            //animatingPebble.TranslationX = 55;
+            //animatingPebble.TranslationY = 55;
+            //// Set the initial position of the animating pebble (centered in its starting pit)
+            //animatingPebble.TranslationX = currentPebbleStartBounds.X + (currentPebbleStartBounds.Width / 2) - (animatingPebble.WidthRequest / 2);
+            //animatingPebble.TranslationY = currentPebbleStartBounds.Y + (currentPebbleStartBounds.Height / 2) - (animatingPebble.WidthRequest / 2);
+
+
