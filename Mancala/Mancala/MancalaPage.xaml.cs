@@ -29,7 +29,7 @@ public partial class MancalaPage : ContentPage
             // Pit 51 index is 6 as of now (bottom right pit)
             _currentPitIndex = _allPits.IndexOf(tappedPit);
 
-            if (tappedPit.Drawable is PitDrawable pitDrawable)
+            if (tappedPit.Drawable is PebbleDrawable pitDrawable)
             {
                 int pebblesToMove = pitDrawable.PebbleCount;
                 if (pebblesToMove > 0)
@@ -76,6 +76,7 @@ public partial class MancalaPage : ContentPage
         }
         Console.WriteLine("Calculated pit positions.");
     }
+
     private async Task DistributePebbles(int pebblesToDistribute)
     {
         Console.WriteLine($"Starting to distribute {pebblesToDistribute} pebbles from pit index {_currentPitIndex}.");
@@ -86,71 +87,71 @@ public partial class MancalaPage : ContentPage
             CalculatePitPositions();
         }
 
-        Rect currentPebbleStartBounds = _pitLayoutBounds[_allPits[_currentPitIndex]];
-        for (int i = 0; i < pebblesToDistribute; i++)
-        {
-            // Move to the next pit in the sequence for distribution
-            _currentPitIndex = (_currentPitIndex + 1) % _allPits.Count; // Love when I get to use modulus in the wild
-            GraphicsView destinationPit = _allPits[_currentPitIndex]; // THIS IS CORRECT
+        //Rect currentPebbleStartBounds = _pitLayoutBounds[_allPits[_currentPitIndex]];
+        //for (int i = 0; i < pebblesToDistribute; i++)
+        //{
+        //    // Move to the next pit in the sequence for distribution
+        //    _currentPitIndex = (_currentPitIndex + 1) % _allPits.Count; // Love when I get to use modulus in the wild
+        //    GraphicsView destinationPit = _allPits[_currentPitIndex]; // THIS IS CORRECT
 
-            Rect currentPebbleDestinationBounds = _pitLayoutBounds[destinationPit];
+        //    Rect currentPebbleDestinationBounds = _pitLayoutBounds[destinationPit];
 
-            var animatingPebble = new GraphicsView
-            {
-                HeightRequest = 10, 
-                WidthRequest = 10,
-                InputTransparent = true, 
-                ZIndex = 100, // max this baby out to put at the top. (who thought z index was only for css)
-                Drawable = new PebbleDrawable { PebbleColor = Colors.AntiqueWhite }
-            }; 
-
-
-
-            MancalaBoardLayout.Add(animatingPebble);
-
-            // TODO uncomment later. IT doesn't work well but it's a good reference
-            //animatingPebble.TranslationX = 55;
-            //animatingPebble.TranslationY = 55;
-
-            //animatingPebble.TranslationX = currentPebbleStartBounds.X + (currentPebbleStartBounds.Width / 2) - (animatingPebble.WidthRequest / 2);
-            //animatingPebble.TranslationY = currentPebbleStartBounds.Y + (currentPebbleStartBounds.Height / 2) - (animatingPebble.WidthRequest / 2);
-
-            // This is Pit51's X, Y. Trying to get the animation pebble to start here.
-            animatingPebble.TranslationX = 60;
-            animatingPebble.TranslationY = 360;
+        //    var animatingPebble = new GraphicsView
+        //    {
+        //        HeightRequest = 10,
+        //        WidthRequest = 10,
+        //        InputTransparent = true,
+        //        ZIndex = 100, // max this baby out to put at the top. (who thought z index was only for css)
+        //        Drawable = new PebbleDrawable { PebbleColor = Colors.AntiqueWhite }
+        //    };
 
 
-            //double targetX = currentPebbleDestinationBounds.X + (currentPebbleDestinationBounds.Width / 2) - (animatingPebble.WidthRequest / 2);
-            //double targetY = currentPebbleDestinationBounds.Y + (currentPebbleDestinationBounds.Height / 2) - (animatingPebble.WidthRequest / 2);
 
-            double targetX = 0;
-            double targetY = 280;
-            // TranslateTo moves relative to the element's *current* position.
+        //    MancalaBoardLayout.Add(animatingPebble);
 
-            //await animatingPebble.TranslateTo(
-            //    targetX - animatingPebble.TranslationX,
-            //    targetY - animatingPebble.TranslationY,
-            //    2000, Easing.Linear); // 200ms animation duration
+        //    // TODO uncomment later. IT doesn't work well but it's a good reference
+        //    //animatingPebble.TranslationX = 55;
+        //    //animatingPebble.TranslationY = 55;
 
-            await animatingPebble.TranslateTo(
-                60,
-                200,
-                2000, Easing.Linear);
+        //    //animatingPebble.TranslationX = currentPebbleStartBounds.X + (currentPebbleStartBounds.Width / 2) - (animatingPebble.WidthRequest / 2);
+        //    //animatingPebble.TranslationY = currentPebbleStartBounds.Y + (currentPebbleStartBounds.Height / 2) - (animatingPebble.WidthRequest / 2);
 
-            //Update the actual destination pit's pebble count
-            if (destinationPit.Drawable is PitDrawable destPitDrawable)
-            {
-                destPitDrawable.PebbleCount++;
-                destinationPit.Invalidate(); 
-            }
-            //Clean up: remove the temporary animating pebble from the UI
-            MancalaBoardLayout.Remove(animatingPebble);
+        //    // This is Pit51's X, Y. Trying to get the animation pebble to start here.
+        //    animatingPebble.TranslationX = 60;
+        //    animatingPebble.TranslationY = 360;
 
-            // Update the start bounds for the *next* pebble's animation to be the current destination's bounds.
-            // This creates a cascading effect where pebbles appear to follow each other.
-            currentPebbleStartBounds = currentPebbleDestinationBounds;
-            await Task.Delay(50);
-        }
+
+        //    //double targetX = currentPebbleDestinationBounds.X + (currentPebbleDestinationBounds.Width / 2) - (animatingPebble.WidthRequest / 2);
+        //    //double targetY = currentPebbleDestinationBounds.Y + (currentPebbleDestinationBounds.Height / 2) - (animatingPebble.WidthRequest / 2);
+
+        //    double targetX = 0;
+        //    double targetY = 280;
+        //    // TranslateTo moves relative to the element's *current* position.
+
+        //    //await animatingPebble.TranslateTo(
+        //    //    targetX - animatingPebble.TranslationX,
+        //    //    targetY - animatingPebble.TranslationY,
+        //    //    2000, Easing.Linear); // 200ms animation duration
+
+        //    await animatingPebble.TranslateTo(
+        //        60,
+        //        200,
+        //        2000, Easing.Linear);
+
+        //    //Update the actual destination pit's pebble count
+        //    if (destinationPit.Drawable is PitDrawable destPitDrawable)
+        //    {
+        //        destPitDrawable.PebbleCount++;
+        //        destinationPit.Invalidate();
+        //    }
+        //    //Clean up: remove the temporary animating pebble from the UI
+        //    MancalaBoardLayout.Remove(animatingPebble);
+
+        //    // Update the start bounds for the *next* pebble's animation to be the current destination's bounds.
+        //    // This creates a cascading effect where pebbles appear to follow each other.
+        //    currentPebbleStartBounds = currentPebbleDestinationBounds;
+        //    await Task.Delay(50);
+        //}
         Console.WriteLine("Pebble distribution complete.");
     }
 }

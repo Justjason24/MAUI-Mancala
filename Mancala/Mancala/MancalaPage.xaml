@@ -40,86 +40,178 @@
 
 
             <!--<Ellipse x:Name="Pit00" Grid.Row="0" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />-->
-            <GraphicsView x:Name="Pit00"
-              HeightRequest="60"
-              WidthRequest="60"
-              Grid.Row="0"
-              Grid.Column="0"
-                     >
-                <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="4"/>
-                </GraphicsView.Drawable>
-            </GraphicsView>
+            <Grid x:Name="Pit00Container" Grid.Row="0" Grid.Column="0"
+                    HeightRequest="60" WidthRequest="60">
+                <!-- pit background -->
+                <GraphicsView>
+                    <GraphicsView.Drawable>
+                        <local:PitDrawable />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <!-- pebbles! -->
+                <GraphicsView x:Name="Pit00">
+                    <GraphicsView.Drawable>
+                        <local:PebbleDrawable PebbleCount="4" />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+            </Grid>
 
-            <!--<Ellipse x:Name="Pit10" Grid.Row="1" Grid.Column="0" Fill="#ffc18c" HeightRequest="60" WidthRequest="60" />-->
-            <GraphicsView x:Name="Pit10" HeightRequest="60" WidthRequest="60" Grid.Row="1" Grid.Column="0">
-                <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="4"/>
-                </GraphicsView.Drawable>
-            </GraphicsView>
-            
-            <GraphicsView x:Name="Pit20" HeightRequest="60" WidthRequest="60" Grid.Row="2" Grid.Column="0">
-                <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="4"/>
-                </GraphicsView.Drawable>
-            </GraphicsView>
+            <Grid x:Name="Pit10Container" Grid.Row="1" Grid.Column="0"
+                    HeightRequest="60" WidthRequest="60">
+                <GraphicsView>
+                    <GraphicsView.Drawable>
+                        <local:PitDrawable />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <GraphicsView x:Name="Pit10">
+                    <GraphicsView.Drawable>
+                        <local:PebbleDrawable PebbleCount="4" />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+            </Grid>
 
-            <GraphicsView x:Name="Pit30" HeightRequest="60" WidthRequest="60" Grid.Row="3" Grid.Column="0">
-                <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="4"/>
-                </GraphicsView.Drawable>
-            </GraphicsView>
+            <Grid x:Name="Pit20Container" Grid.Row="2" Grid.Column="0"
+                    HeightRequest="60" WidthRequest="60">
+                <GraphicsView>
+                    <GraphicsView.Drawable>
+                        <local:PitDrawable />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <GraphicsView x:Name="Pit20">
+                    <GraphicsView.Drawable>
+                        <local:PebbleDrawable PebbleCount="4" />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+            </Grid>
 
-            <GraphicsView x:Name="Pit40" HeightRequest="60" WidthRequest="60" Grid.Row="4" Grid.Column="0">
-                <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="4"/>
-                </GraphicsView.Drawable>
-            </GraphicsView>
+            <Grid x:Name="Pit30Container" Grid.Row="3" Grid.Column="0"
+                    HeightRequest="60" WidthRequest="60">
+                <GraphicsView>
+                    <GraphicsView.Drawable>
+                        <local:PitDrawable />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <GraphicsView x:Name="Pit30">
+                    <GraphicsView.Drawable>
+                        <local:PebbleDrawable PebbleCount="4" />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+            </Grid>
 
-            <GraphicsView x:Name="Pit50" HeightRequest="60" WidthRequest="60" Grid.Row="5" Grid.Column="0">
-                <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="4"/>
-                </GraphicsView.Drawable>
-            </GraphicsView>
+            <Grid x:Name="Pit40Container" Grid.Row="4" Grid.Column="0"
+                    HeightRequest="60" WidthRequest="60">
+                <GraphicsView>
+                    <GraphicsView.Drawable>
+                        <local:PitDrawable />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <GraphicsView x:Name="Pit40">
+                    <GraphicsView.Drawable>
+                        <local:PebbleDrawable PebbleCount="4" />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+            </Grid>
 
-            <GraphicsView x:Name="Pit01" HeightRequest="60" WidthRequest="60" Grid.Row="0" Grid.Column="1">
-                <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="4"/>
-                </GraphicsView.Drawable>
-            </GraphicsView>
+            <Grid x:Name="Pit50Container" Grid.Row="5" Grid.Column="0"
+                    HeightRequest="60" WidthRequest="60">
+                <GraphicsView>
+                    <GraphicsView.Drawable>
+                        <local:PitDrawable />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <GraphicsView x:Name="Pit50">
+                    <GraphicsView.Drawable>
+                        <local:PebbleDrawable PebbleCount="4" />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+            </Grid>
 
-            <GraphicsView x:Name="Pit11" HeightRequest="60" WidthRequest="60" Grid.Row="1" Grid.Column="1">
-                <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="4"/>
-                </GraphicsView.Drawable>
-            </GraphicsView>
+            <Grid x:Name="Pit01Container" Grid.Row="0" Grid.Column="1"
+                    HeightRequest="60" WidthRequest="60">
+                <GraphicsView>
+                    <GraphicsView.Drawable>
+                        <local:PitDrawable />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <GraphicsView x:Name="Pit01">
+                    <GraphicsView.Drawable>
+                        <local:PebbleDrawable PebbleCount="4" />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+            </Grid>
 
-            <GraphicsView x:Name="Pit21" HeightRequest="60" WidthRequest="60" Grid.Row="2" Grid.Column="1">
-                <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="4"/>
-                </GraphicsView.Drawable>
-            </GraphicsView>
+            <Grid x:Name="Pit11Container" Grid.Row="1" Grid.Column="1"
+                    HeightRequest="60" WidthRequest="60">
+                <GraphicsView>
+                    <GraphicsView.Drawable>
+                        <local:PitDrawable />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <GraphicsView x:Name="Pit11">
+                    <GraphicsView.Drawable>
+                        <local:PebbleDrawable PebbleCount="4" />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+            </Grid>
 
-            <GraphicsView x:Name="Pit31" HeightRequest="60" WidthRequest="60" Grid.Row="3" Grid.Column="1">
-                <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="4"/>
-                </GraphicsView.Drawable>
-            </GraphicsView>
+            <Grid x:Name="Pit21Container" Grid.Row="2" Grid.Column="1"
+                    HeightRequest="60" WidthRequest="60">
+                <GraphicsView>
+                    <GraphicsView.Drawable>
+                        <local:PitDrawable />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <GraphicsView x:Name="Pit21">
+                    <GraphicsView.Drawable>
+                        <local:PebbleDrawable PebbleCount="4" />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+            </Grid>
 
-            <GraphicsView x:Name="Pit41" HeightRequest="60" WidthRequest="60" Grid.Row="4" Grid.Column="1">
-                <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="4"/>
-                </GraphicsView.Drawable>
-            </GraphicsView>
+            <Grid x:Name="Pit31Container" Grid.Row="3" Grid.Column="1"
+                    HeightRequest="60" WidthRequest="60">
+                <GraphicsView>
+                    <GraphicsView.Drawable>
+                        <local:PitDrawable />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <GraphicsView x:Name="Pit31">
+                    <GraphicsView.Drawable>
+                        <local:PebbleDrawable PebbleCount="4" />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+            </Grid>
 
-            <GraphicsView x:Name="Pit51" HeightRequest="60" WidthRequest="60" Grid.Row="5" Grid.Column="1">
-                <GraphicsView.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnPitTapped" NumberOfTapsRequired="1" />
-                </GraphicsView.GestureRecognizers>
-                <GraphicsView.Drawable>
-                    <local:PitDrawable PebbleCount="4"/>
-                </GraphicsView.Drawable>
-            </GraphicsView>
+            <Grid x:Name="Pit41Container" Grid.Row="4" Grid.Column="1"
+                    HeightRequest="60" WidthRequest="60">
+                <GraphicsView>
+                    <GraphicsView.Drawable>
+                        <local:PitDrawable />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <GraphicsView x:Name="Pit41">
+                    <GraphicsView.Drawable>
+                        <local:PebbleDrawable PebbleCount="4" />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+            </Grid>
+
+            <Grid x:Name="Pit51Container" Grid.Row="5" Grid.Column="1"
+                    HeightRequest="60" WidthRequest="60">
+                <GraphicsView>
+                    <GraphicsView.Drawable>
+                        <local:PitDrawable />
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+                <GraphicsView x:Name="Pit51">
+                    <GraphicsView.Drawable>
+                        <local:PebbleDrawable PebbleCount="4" />
+                    </GraphicsView.Drawable>
+                    <GraphicsView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnPitTapped" NumberOfTapsRequired="1" />
+                    </GraphicsView.GestureRecognizers>
+                </GraphicsView>
+            </Grid>
             
 
 
