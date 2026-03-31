@@ -12,6 +12,23 @@ namespace Mancala
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
             // lmao i still don't know why docs refer to it as a direct rectangle 
+            canvas.StrokeColor = Colors.Red; // Customize your color
+            canvas.StrokeSize = 2; // Customize your thickness
+
+            // 2. Draw a rectangle that matches the dirtyRect dimensions
+            // Note: On some platforms, strokes are centered on the path, meaning half is outside 
+            // the boundary and might be clipped. To ensure the full border is visible, 
+            // you may need to inset the rectangle slightly (e.g., by half the stroke width).
+            float inset = 1;
+            RectF borderRect = new RectF(
+                dirtyRect.Left + inset,
+                dirtyRect.Top + inset,
+                dirtyRect.Width - (inset * 2),
+                dirtyRect.Height - (inset * 2)
+            );
+
+            // Draw the border
+            canvas.DrawRectangle(borderRect.X, borderRect.Y, borderRect.Width, borderRect.Height);
 
             float width = dirtyRect.Width; //400
             float height = dirtyRect.Height; //600
