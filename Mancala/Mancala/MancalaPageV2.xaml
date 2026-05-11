@@ -4,17 +4,38 @@
              x:Class="Mancala.MancalaPageV2"
              xmlns:local="clr-namespace:Mancala"
              >
-    
 
-        <!--iPhone 15 dims-->
-        <GraphicsView HeightRequest="750"
-                      WidthRequest="400"
-                      HorizontalOptions="Center"
-                      VerticalOptions="Center">
-            <GraphicsView.Drawable>
-                <local:MancalaDrawable />
-            </GraphicsView.Drawable>
-        </GraphicsView>
 
-    
+    <Grid RowDefinitions="Auto, *, Auto"
+          ColumnDefinitions="*"
+          Padding="20"
+          BackgroundColor="PaleGoldenrod">
+
+        <Border
+            Grid.Row="0"
+            HeightRequest="80"
+            WidthRequest="250"
+            Background="#ffc18c"
+            Stroke="Black"
+            StrokeThickness="2"
+            StrokeShape="RoundRectangle 30">
+
+            <!-- Pebbles will live in this layout because a Border can only have one child element -->
+            <HorizontalStackLayout
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Spacing="6">
+
+                <!--mocking pebbles--> 
+                <Ellipse WidthRequest="16" HeightRequest="16" Fill="SaddleBrown"/>
+                <Ellipse WidthRequest="16" HeightRequest="16" Fill="SaddleBrown"/>
+                <Ellipse WidthRequest="16" HeightRequest="16" Fill="SaddleBrown"/>
+
+            </HorizontalStackLayout>
+
+        </Border>
+
+
+    </Grid>
+
 </ContentPage>

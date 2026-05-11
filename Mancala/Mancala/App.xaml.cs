@@ -14,13 +14,17 @@
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            const int newHeight = 800;
-            const int newWidth = 600;
+            const int newHeight = 844;
+            const int newWidth = 390;
 
             var newWindow = new Window(new AppShell())
             {
                 Height = newHeight,
-                Width = newWidth
+                Width = newWidth,
+                MinimumWidth = newWidth,
+                MinimumHeight = newHeight,
+                MaximumWidth = newWidth,
+                MaximumHeight = newHeight,
             };
 
             return newWindow;
