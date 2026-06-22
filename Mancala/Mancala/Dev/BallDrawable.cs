@@ -11,28 +11,39 @@ namespace Mancala.Dev
         public float BallX { get; set; } = 300f;
         public float BallY { get; set; } = 100f;
         public float SpeedX { get; set; } = 3f;
-        public float SpeedY { get; set; } = 3f;
+        public float SpeedY { get; set; } = 4f;
 
-        public void UpdateState(RectF bounds, double deltaTime)
+        public int debugConter = 0;
+
+        public void UpdateState(RectF bounds)
         {
-            // Multiply by deltaTime if you want time-consistent movement, 
-            // or just apply raw frame velocity for simple tests.
             BallX += SpeedX;
             BallY += SpeedY;
 
             // Simple boundary collision checking
-            if (BallX <= 0 || BallX >= bounds.Width - 40) SpeedX *= -1;
-            if (BallY <= 0 || BallY >= bounds.Height - 40) SpeedY *= -1;
+            if (BallX <= 0 || BallX >= bounds.Width - 40)
+            {
+                SpeedX *= -1;
+                debugConter++;
+            }
+                
+            if (BallY <= 0 || BallY >= bounds.Height - 40)
+            {
+                SpeedY *= -1;
+            }
+
+            if(bounds.Width > 0)
+                Console.WriteLine("how??");
+                
         }
 
         // The Render function
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            // Clear frame (handled by GraphicsView, but good to think about background color)
             canvas.FillColor = Colors.DarkSlateGray;
             canvas.FillRectangle(dirtyRect);
 
-            // Draw our animated object
+
             canvas.FillColor = Colors.Coral;
             canvas.FillEllipse(BallX, BallY, 40, 40);
         }
