@@ -8,7 +8,7 @@
 
     <ShellContent
         Title="Mancala"
-        ContentTemplate="{DataTemplate local:TestPageWithInteraction}"
+        ContentTemplate="{DataTemplate local:MancalaGamePage}"
          />
 
 </Shell>

@@ -65,10 +65,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="MancalaPage.xaml">
+	  <MauiXaml Update="MancalaGamePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MancalaPageV2.xaml">
+	  <MauiXaml Update="MancalaPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="TestPage.xaml">

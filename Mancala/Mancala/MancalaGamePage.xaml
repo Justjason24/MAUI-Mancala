@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mancala.MancalaGamePage"
+             xmlns:local="clr-namespace:Mancala.Models"
+             Title="MancalaGamePage">
+    <Grid>
+        <Grid.GestureRecognizers>
+            <PointerGestureRecognizer PointerPressed="OnPointerPressed" />
+        </Grid.GestureRecognizers>
+
+        <GraphicsView x:Name="MyGameScreen">
+            <GraphicsView.Drawable>
+                <local:GameDrawable/>
+            </GraphicsView.Drawable>
+        </GraphicsView>
+    </Grid>
+</ContentPage>
