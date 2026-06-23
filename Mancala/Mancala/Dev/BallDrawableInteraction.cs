@@ -3,38 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.Maui.ApplicationModel.Permissions;
 
 namespace Mancala.Dev
 {
     public class BallDrawableInteraction : IDrawable
     {
-        public float BallX = 100;
-        public float BallY = 300;
-        private float SpeedX = 3.0f;
-        private float SpeedY = 3.0f;
 
-        public int BallRadius = 35;
+        public class JYBall
+        {
+            public float BallX = 100;
+            public float BallY = 300;
+            public float SpeedX = 3.0f;
+            public float SpeedY = 3.0f;
 
-        Microsoft.Maui.Graphics.Color ballColor = Colors.White;
+            public int BallRadius = 35;
+
+            public Microsoft.Maui.Graphics.Color ballColor = Colors.White;
+        }
+
+        public List<JYBall> balls = new List<JYBall>
+        {
+            new JYBall { BallX = 100, BallY = 300, SpeedX = 3.0f, SpeedY = 3.0f, BallRadius = 35 },
+            new JYBall { BallX = 200, BallY = 400, SpeedX = 3.0f, SpeedY = 3.0f, BallRadius = 35 },
+        };
+
 
         public void UpdateBall(RectF bounds)
         {
-            BallX += SpeedX;
-            BallY += SpeedY;
+            foreach(var ball in balls)
+            {
+                ball.BallX += ball.SpeedX;
+                ball.BallY += ball.SpeedY;
 
-            if (BallX < 0 || BallX >= bounds.Width - BallRadius)
-                SpeedX = SpeedX * -1;
+                if (ball.BallX < 0 || ball.BallX >= bounds.Width - ball.BallRadius)
+                    ball.SpeedX = ball.SpeedX * -1;
 
-            if (BallY < 0 || BallY >= bounds.Height - BallRadius)
-                SpeedY = SpeedY * -1;
-
+                if (ball.BallY < 0 || ball.BallY >= bounds.Height - ball.BallRadius)
+                    ball.SpeedY = ball.SpeedY * -1;
+            }
 
         }
 
-        public void ChangeColor()
+        public void ChangeColorIfHit(double x, double y)
         {
-            ballColor = Colors.Red;
+            foreach( var ball in balls)
+            {
+                var distance = Math.Sqrt((x - ball.BallX) * (x - ball.BallX) + (y - ball.BallY) * (y - ball.BallY));
+
+                if (distance < ball.BallRadius)
+                    ball.ballColor = Colors.Red;
+            }
         }
+
 
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
@@ -42,8 +63,12 @@ namespace Mancala.Dev
             canvas.FillRectangle(dirtyRect);
 
 
-            canvas.FillColor = ballColor;
-            canvas.FillEllipse(BallX, BallY, BallRadius, BallRadius);
+            foreach( var ball in balls)
+            {
+                canvas.FillColor = ball.ballColor;
+                canvas.FillEllipse(ball.BallX, ball.BallY, ball.BallRadius, ball.BallRadius);
+            }
+
         }
     }
 }

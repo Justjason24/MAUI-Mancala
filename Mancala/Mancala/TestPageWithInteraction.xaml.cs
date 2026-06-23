@@ -46,22 +46,11 @@ public partial class TestPageWithInteraction : ContentPage
         Console.WriteLine("I am here");
         var point = e.GetPosition((View)sender);
 
-        float ballx = testBallDrawable.BallX;
-        float bally = testBallDrawable.BallY;
-        float ballRadius = testBallDrawable.BallRadius;
-
         double x = point.Value.X;
         double y = point.Value.Y;
 
         // thank you old greek Pythagoreas and the internet
-        var distance = Math.Sqrt((x - ballx) * (x - ballx) + (y - bally) * (y - bally));
-
-        if(distance < ballRadius)
-        {
-            testBallDrawable.ChangeColor();
-        }
-
-        Console.WriteLine("stop here");
+        testBallDrawable.ChangeColorIfHit(x, y);
     }
 
 }
