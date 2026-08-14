@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Mancala.Models
 {
-    public class Pit
+    public class Pebble
     {
         public float X;
         public float Y;
         public float Radius;
-        public int PebbleCount;
     }
 }

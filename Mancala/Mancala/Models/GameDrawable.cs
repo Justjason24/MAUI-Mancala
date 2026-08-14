@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Mancala.Models
 {
@@ -10,6 +11,9 @@ namespace Mancala.Models
     {
         public List<Store> stores = new List<Store>();
         public List<Pit> pits = new List<Pit>();
+        public static int[] GameState = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4];
+
+        public static string value = "Test";
 
         public void Draw(ICanvas canvas, RectF rect)
         {
@@ -19,22 +23,25 @@ namespace Mancala.Models
 
 
 
-            // stores logic
+            // draw game stores
+
+            //set up the data for the stores
             float storeHeight = 100f;
             var GameStores = new List<Store>
             {
-                new Store {X = 10, Y = 10, Width = rect.Width - 20, Height = storeHeight, CornerRadius = 25},
-                new Store {X = 10, Y = rect.Height - storeHeight - 10, Width = rect.Width - 20, Height = storeHeight, CornerRadius = 25}
+                new Store {X = 10, Y = 10, Width = rect.Width - 20, Height = storeHeight, CornerRadius = 25}, // top store
+                new Store {X = 10, Y = rect.Height - storeHeight - 10, Width = rect.Width - 20, Height = storeHeight, CornerRadius = 25} // bottom store
             };
 
             stores = GameStores;
 
-            foreach(var store in GameStores)
+            // actually draw them
+            foreach (var store in GameStores)
             {
                 canvas.FillColor = Colors.White;
                 canvas.StrokeColor = Colors.Black;
                 canvas.FillRoundedRectangle(store.X, store.Y, rect.Width - 20, store.Height, store.CornerRadius);
-                
+
             }
 
 
@@ -45,26 +52,44 @@ namespace Mancala.Models
             var verticalPointer = 110 + verticalSpacePerPitToWorkWith;
             float pitY = (verticalPointer + 110) / 2.0f;
 
+            // left column of pits
             // this is more than spaghetti code, this is a whole olive garden create your own pasta special
             for (int i = 0; i < 6; i++) // six pits
-            {     
+            {
                 // we know where to place the first pit so just increment the next location by the verticalSpaceToworkwithperPit
-                if(i != 0)
+                if (i != 0)
                 {
                     pitY += verticalSpacePerPitToWorkWith;
                 }
 
-                pits.Add(new Pit { X = 100, Y = pitY, Radius = pitRadius });
+                pits.Add(new Pit { X = 100, Y = pitY, Radius = pitRadius, PebbleCount = 4 });
                 Console.WriteLine();
             }
 
-            
+            pitY = (verticalPointer + 110) / 2.0f;
 
-            foreach(var pit in pits)
+            // right column of pits
+            for (int i = 0; i < 6; i++) // six pits
+            {
+                // we know where to place the first pit so just increment the next location by the verticalSpaceToworkwithperPit
+                if (i != 0)
+                {
+                    pitY += verticalSpacePerPitToWorkWith;
+                }
+
+                pits.Add(new Pit { X = 250, Y = pitY, Radius = pitRadius, PebbleCount = 4 });
+                Console.WriteLine();
+            }
+
+            foreach (var pit in pits)
             {
                 canvas.FillColor = Colors.White;
                 canvas.FillCircle(pit.X, pit.Y, pit.Radius);
+                DrawPebbles(canvas, pit);
             }
+
+
+            // Pebble Logic
 
 
             Console.WriteLine();
@@ -76,9 +101,79 @@ namespace Mancala.Models
             {
                 if (x >= store.X && x <= store.X + store.Width && y >= store.Y && y <= store.Y + store.Height)
                 {
+
+                    value = "New value";
                     Console.WriteLine("Pit was clicked");
                 }
             }
         }
+
+        public void CheckIfPitIsHit(double x, double y)
+        {
+
+        }
+
+        public void DrawPebbles(ICanvas canvas, Pit pit)
+        {
+            if (pit.PebbleCount <= 0) return;
+
+            float pebbleRadius = pit.Radius / 5f;
+            float usableRadius = pit.Radius - pebbleRadius - 2f;
+            var rng = new Random(pit.X.GetHashCode() ^ pit.Y.GetHashCode());
+
+            List<(float x, float y)> positions = new();
+            float spacing = pebbleRadius * 2.4f;
+
+            // Shrink spacing until we have enough room for all pebbles
+            while (positions.Count < pit.PebbleCount && spacing >= pebbleRadius * 1.1f)
+            {
+                positions.Clear();
+                // Reset the RNG each attempt so jitter is consistent regardless of spacing used
+                rng = new Random(pit.X.GetHashCode() ^ pit.Y.GetHashCode());
+
+                for (float row = -usableRadius; row <= usableRadius; row += spacing)
+                {
+                    for (float col = -usableRadius; col <= usableRadius; col += spacing)
+                    {
+                        float xOffset = ((int)(row / spacing) % 2 != 0) ? spacing * 0.5f : 0f;
+                        float cx = col + xOffset;
+                        float cy = row;
+
+                        cx += (float)(rng.NextDouble() - 0.5) * pebbleRadius * 0.8f;
+                        cy += (float)(rng.NextDouble() - 0.5) * pebbleRadius * 0.8f;
+
+                        float dist = MathF.Sqrt(cx * cx + cy * cy);
+                        if (dist + pebbleRadius <= usableRadius)
+                            positions.Add((pit.X + cx, pit.Y + cy));
+                    }
+                }
+
+                spacing -= pebbleRadius * 0.1f; // tighten the grid and retry
+            }
+
+            // Draw all pebbles (or as many positions as we managed to generate)
+            int toDraw = Math.Min(pit.PebbleCount, positions.Count);
+            for (int i = 0; i < toDraw; i++)
+            {
+                var (px, py) = positions[i];
+
+                canvas.FillColor = Color.FromArgb("#55000000");
+                canvas.FillCircle(px + pebbleRadius * 0.3f, py + pebbleRadius * 0.3f, pebbleRadius);
+
+                canvas.FillColor = Color.FromArgb("#C0956C");
+                canvas.FillCircle(px, py, pebbleRadius);
+
+                canvas.FillColor = Color.FromArgb("#AAFFFFFF");
+                canvas.FillCircle(px - pebbleRadius * 0.3f, py - pebbleRadius * 0.3f, pebbleRadius * 0.4f);
+            }
+        }
+
+        //public void DrawPebbles(ICanvas canvas, Pit pit)
+        //{
+        //    if(pit.PebbleCount == 4)
+        //    {
+                
+        //    }
+        //}
     }
 }

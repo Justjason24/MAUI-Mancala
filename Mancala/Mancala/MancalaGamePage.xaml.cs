@@ -44,6 +44,8 @@ public partial class MancalaGamePage : ContentPage
 
         gameDrawable.CheckIfStoreHit(x, y);
 
+        gameDrawable.CheckIfPitIsHit(x, y);
+
         Console.WriteLine("idk");
     }
 }
