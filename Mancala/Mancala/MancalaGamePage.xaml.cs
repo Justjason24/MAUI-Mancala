@@ -29,7 +29,7 @@ public partial class MancalaGamePage : ContentPage
     {
         while (gameRunning)
         {
-
+            MyGameScreen.Invalidate();
             await Task.Delay(2);
         }
     }

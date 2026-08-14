@@ -11,7 +11,8 @@ namespace Mancala.Models
     {
         public List<Store> stores = new List<Store>();
         public List<Pit> pits = new List<Pit>();
-        public static int[] GameState = [0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4];
+        public static int[] LeftPitPebbleCount = [4, 7, 4, 2, 4, 4];
+        public static int[] RightPitPebbleCount = [4, 4, 4, 4, 4, 4];
 
         public static string value = "Test";
 
@@ -21,7 +22,7 @@ namespace Mancala.Models
             canvas.FillColor = Colors.Tan;
             canvas.FillRectangle(rect);
 
-
+            pits.Clear(); // lol if I dont have this then I add 12 more pits each frame of the game and my computer blows up 
 
             // draw game stores
 
@@ -62,7 +63,7 @@ namespace Mancala.Models
                     pitY += verticalSpacePerPitToWorkWith;
                 }
 
-                pits.Add(new Pit { X = 100, Y = pitY, Radius = pitRadius, PebbleCount = 4 });
+                pits.Add(new Pit { X = 100, Y = pitY, Radius = pitRadius, PebbleCount = LeftPitPebbleCount[i] });
                 Console.WriteLine();
             }
 
@@ -77,7 +78,7 @@ namespace Mancala.Models
                     pitY += verticalSpacePerPitToWorkWith;
                 }
 
-                pits.Add(new Pit { X = 250, Y = pitY, Radius = pitRadius, PebbleCount = 4 });
+                pits.Add(new Pit { X = 250, Y = pitY, Radius = pitRadius, PebbleCount = RightPitPebbleCount[i] });
                 Console.WriteLine();
             }
 
@@ -103,6 +104,7 @@ namespace Mancala.Models
                 {
 
                     value = "New value";
+                    LeftPitPebbleCount[5] = 1;
                     Console.WriteLine("Pit was clicked");
                 }
             }
@@ -110,7 +112,7 @@ namespace Mancala.Models
 
         public void CheckIfPitIsHit(double x, double y)
         {
-
+            Console.WriteLine("Figure out what pit was hit.");
         }
 
         public void DrawPebbles(ICanvas canvas, Pit pit)
