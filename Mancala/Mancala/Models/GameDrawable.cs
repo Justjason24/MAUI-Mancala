@@ -11,7 +11,7 @@ namespace Mancala.Models
     {
         public List<Store> stores = new List<Store>();
         public List<Pit> pits = new List<Pit>();
-        public static int[] LeftPitPebbleCount = [4, 7, 4, 2, 4, 4];
+        public static int[] LeftPitPebbleCount = [4, 1, 1, 2, 4, 4];
         public static int[] RightPitPebbleCount = [4, 4, 4, 4, 4, 4];
         public List<Models.Pebble> Pebbles = new List<Models.Pebble>();
 
