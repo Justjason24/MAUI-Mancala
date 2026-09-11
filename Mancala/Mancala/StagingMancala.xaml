@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mancala.TestPageWithInteraction"
-             xmlns:local="clr-namespace:Mancala.Dev"
-             Title="TestPageWithInteraction">
-
+             x:Class="Mancala.StagingMancala"
+             xmlns:local="clr-namespace:Mancala.Staging"
+             Title="STAGING">
     <Grid>
         <Grid.GestureRecognizers>
             <PointerGestureRecognizer PointerPressed="OnPointerPressed" />
         </Grid.GestureRecognizers>
-        
-        <GraphicsView x:Name="MyGameScreen">
+
+        <GraphicsView x:Name="StagingGameScreen">
             <GraphicsView.Drawable>
-                <local:BallDrawableInteraction/>
+                <local:StagingGameDrawable/>
             </GraphicsView.Drawable>
         </GraphicsView>
     </Grid>

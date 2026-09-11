@@ -7,4 +7,4 @@ GameDrawable.cs is needed
 
 
 ---------------------
-The testing page is TestPageWithInteraction.xaml
+The testing page is StagingMancala.xaml

@@ -68,10 +68,10 @@
 	  <MauiXaml Update="MancalaGamePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="TestPage.xaml">
+	  <MauiXaml Update="StagingMancala.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="TestPageWithInteraction.xaml">
+	  <MauiXaml Update="TestPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
