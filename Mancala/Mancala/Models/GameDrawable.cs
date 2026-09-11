@@ -13,6 +13,7 @@ namespace Mancala.Models
         public List<Pit> pits = new List<Pit>();
         public static int[] LeftPitPebbleCount = [4, 7, 4, 2, 4, 4];
         public static int[] RightPitPebbleCount = [4, 4, 4, 4, 4, 4];
+        public List<Models.Pebble> Pebbles = new List<Models.Pebble>();
 
         public static string value = "Test";
 
@@ -102,9 +103,10 @@ namespace Mancala.Models
             {
                 if (x >= store.X && x <= store.X + store.Width && y >= store.Y && y <= store.Y + store.Height)
                 {
-
+                    Random rand = new Random();
+                    int randomNumber = rand.Next(1, 7);
                     value = "New value";
-                    LeftPitPebbleCount[5] = 1;
+                    LeftPitPebbleCount[5] = randomNumber;
                     Console.WriteLine("Pit was clicked");
                 }
             }
