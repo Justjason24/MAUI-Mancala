@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -10,11 +11,6 @@ namespace Mancala.Staging
 {
     internal class StagingGameDrawable : IDrawable
     {
-        public List<Store> stores = new List<Store>();
-        public List<Pit> pits = new List<Pit>();
-        public static int[] LeftPitPebbleCount = [4, 1, 1, 2, 4, 4];
-        public static int[] RightPitPebbleCount = [4, 4, 4, 4, 4, 4];
-        public List<Models.Pebble> Pebbles = new List<Models.Pebble>();
 
         public static string value = "Test";
 
@@ -23,8 +19,6 @@ namespace Mancala.Staging
             // set background color
             canvas.FillColor = Colors.Coral;
             canvas.FillRectangle(rect);
-
-            pits.Clear(); // lol if I dont have this then I add 12 more pits each frame of the game and my computer blows up 
 
             // draw game stores
 
@@ -36,9 +30,8 @@ namespace Mancala.Staging
                 new Store {X = 10, Y = rect.Height - storeHeight - 10, Width = rect.Width - 20, Height = storeHeight, CornerRadius = 25} // bottom store
             };
 
-            stores = GameStores;
 
-            // actually draw them
+            // actually draw the the stores
             foreach (var store in GameStores)
             {
                 canvas.FillColor = Colors.White;
@@ -50,7 +43,7 @@ namespace Mancala.Staging
 
             // pit logic
             float pitRadius = 40;
-            var workingVerticalSpace = rect.Height - stores.Sum(s => s.Height) - 10 - 10; // 10 padding on top store and bottom
+            var workingVerticalSpace = rect.Height - GameStores.Sum(s => s.Height) - 10 - 10; // 10 padding on top store and bottom
             var verticalSpacePerPitToWorkWith = workingVerticalSpace / 6; // 89.3
             var verticalPointer = 110 + verticalSpacePerPitToWorkWith;
             float pitY = (verticalPointer + 110) / 2.0f;
@@ -65,7 +58,9 @@ namespace Mancala.Staging
                     pitY += verticalSpacePerPitToWorkWith;
                 }
 
-                pits.Add(new Pit { X = 100, Y = pitY, Radius = pitRadius, PebbleCount = LeftPitPebbleCount[i] });
+
+                canvas.FillColor = Colors.White;
+                canvas.FillCircle(100, pitY, 40);
                 Console.WriteLine();
             }
 
@@ -74,44 +69,31 @@ namespace Mancala.Staging
             // right column of pits
             for (int i = 0; i < 6; i++) // six pits
             {
-                // we know where to place the first pit so just increment the next location by the verticalSpaceToworkwithperPit
                 if (i != 0)
                 {
                     pitY += verticalSpacePerPitToWorkWith;
                 }
-
-                pits.Add(new Pit { X = 250, Y = pitY, Radius = pitRadius, PebbleCount = RightPitPebbleCount[i] });
+                canvas.FillColor = Colors.White;
+                canvas.FillCircle(250, pitY, 40);
                 Console.WriteLine();
             }
 
-            foreach (var pit in pits)
-            {
-                canvas.FillColor = Colors.White;
-                canvas.FillCircle(pit.X, pit.Y, pit.Radius);
-                DrawPebbles(canvas, pit);
-            }
-
-
-            // Pebble Logic
-
-
-            Console.WriteLine();
         }
 
-        public void CheckIfStoreHit(double x, double y)
-        {
-            foreach (var store in stores)
-            {
-                if (x >= store.X && x <= store.X + store.Width && y >= store.Y && y <= store.Y + store.Height)
-                {
-                    Random rand = new Random();
-                    int randomNumber = rand.Next(1, 7);
-                    value = "New value";
-                    LeftPitPebbleCount[5] = randomNumber;
-                    Console.WriteLine("Pit was clicked");
-                }
-            }
-        }
+        //public void CheckIfStoreHit(double x, double y)
+        //{
+        //    foreach (var store in stores)
+        //    {
+        //        if (x >= store.X && x <= store.X + store.Width && y >= store.Y && y <= store.Y + store.Height)
+        //        {
+        //            Random rand = new Random();
+        //            int randomNumber = rand.Next(1, 7);
+        //            value = "New value";
+        //            LeftPitPebbleCount[5] = randomNumber;
+        //            Console.WriteLine("Pit was clicked");
+        //        }
+        //    }
+        //}
 
         public void CheckIfPitIsHit(double x, double y)
         {

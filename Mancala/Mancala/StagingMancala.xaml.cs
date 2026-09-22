@@ -31,7 +31,7 @@ public partial class StagingMancala : ContentPage
         while (gameRunning)
         {
             StagingGameScreen.Invalidate();
-            await Task.Delay(2);
+            await Task.Delay(100);
         }
     }
 
@@ -43,7 +43,7 @@ public partial class StagingMancala : ContentPage
         double x = point.Value.X;
         double y = point.Value.Y;
 
-        gameDrawable.CheckIfStoreHit(x, y);
+        //gameDrawable.CheckIfStoreHit(x, y);
 
         gameDrawable.CheckIfPitIsHit(x, y);
 

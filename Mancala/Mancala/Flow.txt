@@ -1,4 +1,4 @@
-﻿The entry point is at AppShell.xaml. Define the .xaml / .cs duo there to go with.
+﻿/The entry point is at AppShell.xaml. Define the .xaml / .cs duo there to go with.
 
 ---------------------
 The working proof of concept is in MancalaGamePgae.xaml along with GameDrawable.cs. The below will discuss problems there.
@@ -8,3 +8,21 @@ GameDrawable.cs is needed
 
 ---------------------
 The testing page is StagingMancala.xaml
+
+
+
+--------------------
+
+9/21 JOURNAL
+I think my hang-up is the List<Pits>. Each frame, I clear the pits. Then re-make and redraw them. 
+
+There's also psuedo-randomness involved because I'm draw the pebbles in the pits. So 4 pebbles in a pit will always look the same for that pit, but other pits holding 4 may look
+	different.
+
+I'm now almost posiitve that in order for this game to look good I'm going to have to control each store, pit, and pebble. For now, I'm going to carve out some code. Luckily,
+	I think I only need to repurpose the draw-pebble method.
+
+Probably need to do this: 
+1. Calculate the areas that pits live. That area is static since I've hard-coded the screen resolution.
+2. At this point, I will have an x, y, width, and height of where the pit lives. 
+3. Draw each pebble. I think I will have it setup for now that each pit with 4 pebbles will look identical. Then we can work on animating them.
