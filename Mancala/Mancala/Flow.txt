@@ -48,3 +48,7 @@ PROGRESS! I altered the Pebble.cs class to include a destination X and destinati
 	will animate those 4 pebbles into any pit I specify.
 	-- ACTUALLY, what I should probably do before this is strongly type the pits. Sure, I know the area and bounds of the pits, but wouldn't it 
 		be nicer if I could just say move to this pit and it knows to go to this one. 
+
+Okay, handoff for now. I like the idea of the pits having a name. I modified the Pebble.cs class to have an ID. I think at the start
+I will create each pit and hardcode it's initial X, Y and give it an ID. Then I can designate pebbles to a Pit. Work on this next.
+Just need to create a list of Pebbles and give it IDs.

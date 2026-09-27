@@ -177,8 +177,15 @@ namespace Mancala.Staging
             }
         }
 
-        public void DebugMovePebblesToPit()
+        public void DebugMovePebblesToPit(string desiredPitName)
         {
+            // TODO: Working on this
+            // The output of this should be to set each pebble's desired X and Y.
+            var destinationPit = pits.Where(x => x.Name.Trim() == desiredPitName).FirstOrDefault();
+
+            if (destinationPit == null)
+                throw new Exception("Could not find pit");
+
 
         }
     }

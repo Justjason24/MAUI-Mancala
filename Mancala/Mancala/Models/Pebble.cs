@@ -15,6 +15,8 @@ namespace Mancala.Models
         public float DestinationX;
         public float DestinationY;
 
+        public int ID;
+
         public Pebble()
         {
                 
