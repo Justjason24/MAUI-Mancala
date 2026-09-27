@@ -11,5 +11,19 @@ namespace Mancala.Models
         public float X;
         public float Y;
         public float Radius;
+
+        public Pebble()
+        {
+                
+        }
+
+        public Pebble(float x, float y, float r)
+        {
+            this.X = x;
+            this.Y = y;
+            this.Radius = r;
+        }
     }
+
+    
 }

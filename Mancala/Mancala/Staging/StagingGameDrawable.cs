@@ -79,6 +79,7 @@ namespace Mancala.Staging
             }
 
             DrawDebugPitRects(canvas);
+            DrawStartingPebbles(canvas);
 
         }
 
@@ -102,6 +103,18 @@ namespace Mancala.Staging
             canvas.DrawRectangle(210, 473, 80, 80);
             canvas.DrawRectangle(210, 563, 80, 80);
 
+        }
+
+        public void DrawStartingPebbles(ICanvas canvas)
+        {
+            canvas.FillColor = Colors.Violet;
+            canvas.FillCircle(100, 150, 5);
+            canvas.FillCircle(100, 160, 5);
+            canvas.FillCircle(92, 155, 5);
+            canvas.FillCircle(108, 155, 5);
+
+
+            var pebble1 = new Pebble(100, 155, 5);
         }
 
         //public void CheckIfStoreHit(double x, double y)
