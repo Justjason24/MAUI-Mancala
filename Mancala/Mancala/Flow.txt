@@ -26,3 +26,12 @@ Probably need to do this:
 1. Calculate the areas that pits live. That area is static since I've hard-coded the screen resolution.
 2. At this point, I will have an x, y, width, and height of where the pit lives. 
 3. Draw each pebble. I think I will have it setup for now that each pit with 4 pebbles will look identical. Then we can work on animating them.
+
+Lastly - I'm working on drawing each pebble but I'm wanting to plot the screen to get a feel of the math involved. However, I just noticed that the direct Rect being passed in does no
+	match the dimenions I specify so going to dive down that rabbit hole.
+
+
+9/27 JOURNAL
+Going to draw debug squares around the pits. If I can do this and record the dims and center point (absolute positions) then I can work 
+	on how I would set pebbles in there.
+

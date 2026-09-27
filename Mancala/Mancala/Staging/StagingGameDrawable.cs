@@ -60,7 +60,7 @@ namespace Mancala.Staging
 
 
                 canvas.FillColor = Colors.White;
-                canvas.FillCircle(100, pitY, 40);
+                canvas.FillCircle(100, pitY, 40); // first pit drawn (top left) center point is at 100, 154, 40 = radius
                 Console.WriteLine();
             }
 
@@ -77,6 +77,30 @@ namespace Mancala.Staging
                 canvas.FillCircle(250, pitY, 40);
                 Console.WriteLine();
             }
+
+            DrawDebugPitRects(canvas);
+
+        }
+
+        public void DrawDebugPitRects(ICanvas canvas)
+        {
+            //89.4 is the y delta
+
+            // left pits
+            canvas.DrawRectangle(60, 115, 80, 80);
+            canvas.DrawRectangle(60, 205, 80, 80);
+            canvas.DrawRectangle(60, 294, 80, 80);
+            canvas.DrawRectangle(60, 384, 80, 80);
+            canvas.DrawRectangle(60, 473, 80, 80);
+            canvas.DrawRectangle(60, 563, 80, 80);
+
+            // right pits
+            canvas.DrawRectangle(210, 115, 80, 80);
+            canvas.DrawRectangle(210, 205, 80, 80);
+            canvas.DrawRectangle(210, 294, 80, 80);
+            canvas.DrawRectangle(210, 384, 80, 80);
+            canvas.DrawRectangle(210, 473, 80, 80);
+            canvas.DrawRectangle(210, 563, 80, 80);
 
         }
 
