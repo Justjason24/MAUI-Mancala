@@ -46,3 +46,5 @@ I now have a click event on the top store. Also, when I click the top store, it 
 PROGRESS! I altered the Pebble.cs class to include a destination X and destination Y. Then added a new method SetPebbleCoordsNextTick()
 	which increases the pebbles X position tick by tick. So many thing left to do... I think I should work on the the algorithm that 
 	will animate those 4 pebbles into any pit I specify.
+	-- ACTUALLY, what I should probably do before this is strongly type the pits. Sure, I know the area and bounds of the pits, but wouldn't it 
+		be nicer if I could just say move to this pit and it knows to go to this one. 

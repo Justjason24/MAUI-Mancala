@@ -23,6 +23,23 @@ namespace Mancala.Staging
             new(108, 155, 5, 108, 155)
         };
 
+        public List<Staging.Pit> pits = new List<Staging.Pit>()
+        {
+            new(60, 115, "Pit00"),
+            new(60, 205, "Pit01"),
+            new(60, 294, "Pit02"),
+            new(60, 384, "Pit03"),
+            new(60, 473, "Pit04"),
+            new(60, 563, "Pit05"),
+
+            new(210, 115, "Pit10"),
+            new(210, 205, "Pit11"),
+            new(210, 294, "Pit12"),
+            new(210, 384, "Pit13"),
+            new(210, 473, "Pit14"),
+            new(210, 563, "Pit15")
+        };
+
         public void Draw(ICanvas canvas, RectF rect)
         {
             // set background color
@@ -158,6 +175,11 @@ namespace Mancala.Staging
             {
                 DebugSetPebbleDestination();
             }
+        }
+
+        public void DebugMovePebblesToPit()
+        {
+
         }
     }
 }
