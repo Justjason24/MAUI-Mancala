@@ -17,10 +17,10 @@ namespace Mancala.Staging
 
         public List<Pebble> pebbles = new List<Pebble>()
         {
-            new(100, 150, 5),
-            new(100, 160, 5),
-            new(92, 155, 5),
-            new(108, 155, 5)
+            new(100, 150, 5, 100, 150),
+            new(100, 160, 5, 100, 160),
+            new(92, 155, 5, 92, 155),
+            new(108, 155, 5, 108, 155)
         };
 
         public void Draw(ICanvas canvas, RectF rect)
@@ -88,9 +88,27 @@ namespace Mancala.Staging
             }
 
             DrawDebugPitRects(canvas);
+            SetPebbleCoordsNextTick();
             DrawPebbles(canvas);
 
 
+        }
+
+        public void SetPebbleCoordsNextTick()
+        {
+            foreach (var pebble in pebbles)
+            {
+
+                if (pebble.X != pebble.DestinationX)
+                {
+                    pebble.X += 5;
+                }
+
+                if(pebble.Y != pebble.DestinationY)
+                {
+                    pebble.Y += 5;
+                }
+            }
         }
 
         public void DrawDebugPitRects(ICanvas canvas)
@@ -124,23 +142,13 @@ namespace Mancala.Staging
             }
         }
 
-        public void DebugAnimate()
+        public void DebugSetPebbleDestination()
         {
-            // I'm going to go down to the bottom pit. 
-            // I need to take all pebbles, and change their Y value and redraw
-
-            foreach(var pebblesToMove in pebbles)
+            // for right now I'm saying move all the pebbles down a bit.
+            foreach (var pebblesToMove in pebbles)
             {
-                if (pebblesToMove.Y > 300)
-                    break;
-
-                pebblesToMove.Y += 50;
+                pebblesToMove.DestinationY += 100;
             }
-        }
-
-        public void CheckIfPitIsHit(double x, double y)
-        {
-            Console.WriteLine("Figure out what pit was hit.");
         }
 
 
@@ -148,7 +156,7 @@ namespace Mancala.Staging
         {
             if ((x > 10 && x < 350) && (y > 10 && y < 110))
             {
-                DebugAnimate();
+                DebugSetPebbleDestination();
             }
         }
     }

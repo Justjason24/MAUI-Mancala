@@ -12,6 +12,9 @@ namespace Mancala.Models
         public float Y;
         public float Radius;
 
+        public float DestinationX;
+        public float DestinationY;
+
         public Pebble()
         {
                 
@@ -22,6 +25,16 @@ namespace Mancala.Models
             this.X = x;
             this.Y = y;
             this.Radius = r;
+        }
+
+        public Pebble(float x, float y, float r, float destinationX, float destinationY)
+        {
+            this.X = x;
+            this.Y = y;
+            this.Radius = r;
+
+            this.DestinationX = destinationX;
+            this.DestinationY = destinationY;
         }
     }
 

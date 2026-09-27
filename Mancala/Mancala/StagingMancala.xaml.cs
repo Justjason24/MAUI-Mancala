@@ -45,7 +45,7 @@ public partial class StagingMancala : ContentPage
 
         //gameDrawable.CheckIfStoreHit(x, y);
 
-        gameDrawable.CheckIfPitIsHit(x, y);
+       // gameDrawable.CheckIfPitIsHit(x, y);
 
         gameDrawable.DebugHitOnStore(x, y);
 
