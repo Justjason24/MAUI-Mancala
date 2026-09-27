@@ -35,4 +35,8 @@ Lastly - I'm working on drawing each pebble but I'm wanting to plot the screen t
 Going to draw debug squares around the pits. If I can do this and record the dims and center point (absolute positions) then I can work 
 	on how I would set pebbles in there.
 
-That worked. Next thing is going to be drawing pebbles.
+That worked. Next thing is going to be drawing pebbles. 
+
+I drew 4 pebbles in the first pit. I think the next step is putting those first 4 pits into objects and seeing if I can animate them down to
+the pit below. However, I should probably add a ClickEvent to act as a trigger. Let me do that first and then animate it myself. 
+

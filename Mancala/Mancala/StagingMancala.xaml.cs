@@ -47,6 +47,8 @@ public partial class StagingMancala : ContentPage
 
         gameDrawable.CheckIfPitIsHit(x, y);
 
+        gameDrawable.DebugHitOnStore(x, y);
+
         Console.WriteLine("idk");
     }
 }

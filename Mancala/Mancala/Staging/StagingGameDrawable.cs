@@ -13,6 +13,15 @@ namespace Mancala.Staging
     {
 
         public static string value = "Test";
+        public static bool hasGameBegun = false;
+
+        public List<Pebble> pebbles = new List<Pebble>()
+        {
+            new(100, 150, 5),
+            new(100, 160, 5),
+            new(92, 155, 5),
+            new(108, 155, 5)
+        };
 
         public void Draw(ICanvas canvas, RectF rect)
         {
@@ -79,7 +88,8 @@ namespace Mancala.Staging
             }
 
             DrawDebugPitRects(canvas);
-            DrawStartingPebbles(canvas);
+            DrawPebbles(canvas);
+
 
         }
 
@@ -105,99 +115,41 @@ namespace Mancala.Staging
 
         }
 
-        public void DrawStartingPebbles(ICanvas canvas)
+        public void DrawPebbles(ICanvas canvas)
         {
             canvas.FillColor = Colors.Violet;
-            canvas.FillCircle(100, 150, 5);
-            canvas.FillCircle(100, 160, 5);
-            canvas.FillCircle(92, 155, 5);
-            canvas.FillCircle(108, 155, 5);
-
-
-            var pebble1 = new Pebble(100, 155, 5);
+            foreach(var pebble in pebbles)
+            {
+                canvas.FillCircle(pebble.X, pebble.Y, pebble.Radius);
+            }
         }
 
-        //public void CheckIfStoreHit(double x, double y)
-        //{
-        //    foreach (var store in stores)
-        //    {
-        //        if (x >= store.X && x <= store.X + store.Width && y >= store.Y && y <= store.Y + store.Height)
-        //        {
-        //            Random rand = new Random();
-        //            int randomNumber = rand.Next(1, 7);
-        //            value = "New value";
-        //            LeftPitPebbleCount[5] = randomNumber;
-        //            Console.WriteLine("Pit was clicked");
-        //        }
-        //    }
-        //}
+        public void DebugAnimate()
+        {
+            // I'm going to go down to the bottom pit. 
+            // I need to take all pebbles, and change their Y value and redraw
+
+            foreach(var pebblesToMove in pebbles)
+            {
+                if (pebblesToMove.Y > 300)
+                    break;
+
+                pebblesToMove.Y += 50;
+            }
+        }
 
         public void CheckIfPitIsHit(double x, double y)
         {
             Console.WriteLine("Figure out what pit was hit.");
         }
 
-        public void DrawPebbles(ICanvas canvas, Pit pit)
+
+        public void DebugHitOnStore(double x, double y)
         {
-            if (pit.PebbleCount <= 0) return;
-
-            float pebbleRadius = pit.Radius / 5f;
-            float usableRadius = pit.Radius - pebbleRadius - 2f;
-            var rng = new Random(pit.X.GetHashCode() ^ pit.Y.GetHashCode());
-
-            List<(float x, float y)> positions = new();
-            float spacing = pebbleRadius * 2.4f;
-
-            // Shrink spacing until we have enough room for all pebbles
-            while (positions.Count < pit.PebbleCount && spacing >= pebbleRadius * 1.1f)
+            if ((x > 10 && x < 350) && (y > 10 && y < 110))
             {
-                positions.Clear();
-                // Reset the RNG each attempt so jitter is consistent regardless of spacing used
-                rng = new Random(pit.X.GetHashCode() ^ pit.Y.GetHashCode());
-
-                for (float row = -usableRadius; row <= usableRadius; row += spacing)
-                {
-                    for (float col = -usableRadius; col <= usableRadius; col += spacing)
-                    {
-                        float xOffset = ((int)(row / spacing) % 2 != 0) ? spacing * 0.5f : 0f;
-                        float cx = col + xOffset;
-                        float cy = row;
-
-                        cx += (float)(rng.NextDouble() - 0.5) * pebbleRadius * 0.8f;
-                        cy += (float)(rng.NextDouble() - 0.5) * pebbleRadius * 0.8f;
-
-                        float dist = MathF.Sqrt(cx * cx + cy * cy);
-                        if (dist + pebbleRadius <= usableRadius)
-                            positions.Add((pit.X + cx, pit.Y + cy));
-                    }
-                }
-
-                spacing -= pebbleRadius * 0.1f; // tighten the grid and retry
-            }
-
-            // Draw all pebbles (or as many positions as we managed to generate)
-            int toDraw = Math.Min(pit.PebbleCount, positions.Count);
-            for (int i = 0; i < toDraw; i++)
-            {
-                var (px, py) = positions[i];
-
-                canvas.FillColor = Color.FromArgb("#55000000");
-                canvas.FillCircle(px + pebbleRadius * 0.3f, py + pebbleRadius * 0.3f, pebbleRadius);
-
-                canvas.FillColor = Color.FromArgb("#C0956C");
-                canvas.FillCircle(px, py, pebbleRadius);
-
-                canvas.FillColor = Color.FromArgb("#AAFFFFFF");
-                canvas.FillCircle(px - pebbleRadius * 0.3f, py - pebbleRadius * 0.3f, pebbleRadius * 0.4f);
+                DebugAnimate();
             }
         }
-
-        //public void DrawPebbles(ICanvas canvas, Pit pit)
-        //{
-        //    if(pit.PebbleCount == 4)
-        //    {
-                
-        //    }
-        //}
     }
 }
