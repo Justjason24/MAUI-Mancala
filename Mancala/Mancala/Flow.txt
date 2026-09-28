@@ -54,3 +54,9 @@ I will create each pit and hardcode it's initial X, Y and give it an ID. Then I 
 Just need to create a list of Pebbles and give it IDs.
 
 At this point I have each pit and pebbles belonging to it. I think I'm ready to try the 
+
+9/28 JOURNAL
+WOW, this was difficult to figure out on my own. My brain hurts but I have a rough way to fill pebbles in a space uniformly. Who knows, will probably be ridden with bugs but we will see.
+The next issue is the SetPebbleCoordsNextTick() method. You see, I have the pebbles that need to move with an X, Y and Destination X, Y. But I need to figure out how to have my X approach 
+	the destination X in a predetermined amout of frames? Or maybe that doesn't matter... I just need a way to get my X to approach DestinationX regardless of sign. (Can go positive or negative)
+

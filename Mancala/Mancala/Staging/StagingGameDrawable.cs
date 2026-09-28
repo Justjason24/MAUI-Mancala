@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.WebSockets;
 using System.Runtime.CompilerServices;
@@ -125,6 +126,7 @@ namespace Mancala.Staging
 
                 if (pebble.X != pebble.DestinationX)
                 {
+                    Console.WriteLine("debug");
                     pebble.X += 5;
                 }
 
@@ -154,6 +156,16 @@ namespace Mancala.Staging
             canvas.DrawRectangle(210, 384, 80, 80);
             canvas.DrawRectangle(210, 473, 80, 80);
             canvas.DrawRectangle(210, 563, 80, 80);
+
+            canvas.StrokeColor = Colors.Maroon;
+            canvas.DrawRectangle(90, 235, 20, 20); // pebblesBoundX, pebblesBoundY, pebblesBoundSideLength x 2
+
+            // start in top left and go gown {pebblesBounds} then move to top right
+            canvas.FillColor = Colors.CornflowerBlue;
+            canvas.FillCircle(95, 240, 5);
+            canvas.FillCircle(95, 250, 5);
+            canvas.FillCircle(105, 240, 5);
+            canvas.FillCircle(105, 250, 5);
 
         }
 
@@ -228,10 +240,47 @@ namespace Mancala.Staging
             if (allPebblesToMove.Count == 0)
                 throw new Exception("idk how this happened");
 
-            if(allPebblesToMove.Count == 1)
-                Console.WriteLine("todo");
+            // determine how many pebbles need to fit in a 'square' within the pit bounds.
+            var pebblesBounds = Math.Ceiling(Math.Sqrt(allPebblesToMove.Count()));
+            var pebblesBoundsSideLength = pebblesBounds * 10.00; // 5 because that's the pebble's radius so the dimater (width) is 10
+
+            var distanceOnEachSide = (destinationPit.SideLength - pebblesBoundsSideLength) / 2;
+
+            var pebblesBoundX = destinationPit.X + distanceOnEachSide;
+            var pebblesBoundY = destinationPit.Y + distanceOnEachSide;
 
 
+            var firstPebbleX = (float)(pebblesBoundX + 5.00); //95
+            var firstPebbleY = (float)(pebblesBoundY + 5.00); //240
+
+            int pebblesPlaced = 0;
+            int x_scale = 0;
+            int y_scale = 10;
+
+            foreach(var pebble in allPebblesToMove)
+            {
+                if(pebblesPlaced == 0)
+                {
+                    pebble.DestinationX = firstPebbleX;
+                    pebble.DestinationY = firstPebbleY;
+                    pebblesPlaced++;
+                    continue;
+                }
+
+                if(pebblesPlaced % pebblesBounds == 0)
+                {
+                    x_scale += 10;
+                    y_scale = 0;
+                }
+
+                pebble.DestinationX = firstPebbleX + x_scale;
+                pebble.DestinationY = firstPebbleY + y_scale;
+                y_scale += 10;
+                pebblesPlaced++;
+
+            }
+
+            Console.WriteLine();
 
 
         }
