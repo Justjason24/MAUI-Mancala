@@ -12,7 +12,6 @@ namespace Mancala.Staging
 {
     internal class StagingGameDrawable : IDrawable
     {
-
         public static string value = "Test";
         public static bool hasGameBegun = false;
 
@@ -182,7 +181,7 @@ namespace Mancala.Staging
             if ((x > 10 && x < 350) && (y > 10 && y < 110))
             {
                 //DebugSetPebbleDestination(); // this works - nothing more than animation test. 
-                DebugMovePebblesToPit("Pit01");
+                DebugAnimatePebblesToPit(pebbles.Where(x => x.ID < 5).ToList() ,"Pit01");
             }
         }
 
@@ -207,7 +206,7 @@ namespace Mancala.Staging
             }
         }
 
-        public void DebugMovePebblesToPit(string desiredPitName)
+        public void DebugAnimatePebblesToPit(List<Pebble> pebbles, string desiredPitName)
         {
             // TODO: Working on this
             // The output of this should be to set each pebble's desired X and Y.
@@ -217,7 +216,32 @@ namespace Mancala.Staging
                 throw new Exception("Could not find pit");
 
 
+            var allPebblesToMove = new List<Pebble>();
 
+            var pebblesAlreadyInPit = destinationPit.Pebbles.Where(x => x.ID != null).ToList();
+
+            allPebblesToMove.AddRange(pebbles);
+            allPebblesToMove.AddRange(pebblesAlreadyInPit);
+
+
+
+            if (allPebblesToMove.Count == 0)
+                throw new Exception("idk how this happened");
+
+            if(allPebblesToMove.Count == 1)
+                Console.WriteLine("todo");
+
+
+
+
+        }
+
+        public Tuple<double, double> CalculateMidPointFromPitBounds(Staging.Pit pit)
+        {
+            double x_midpoint = (pit.X + pit.SideLength) - pit.X;
+            double y_midpoint = (pit.Y + pit.SideLength) - pit.Y;
+
+            return new Tuple<double, double>(x_midpoint, y_midpoint);
         }
     }
 }

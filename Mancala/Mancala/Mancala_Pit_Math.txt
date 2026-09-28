@@ -1,0 +1,22 @@
+﻿1 pebble
+----------
+
+Find middle point and plop ((pitX + 80) - pitX
+						   ((pitY+ 80) - pitY
+
+
+2 pebble
+-----------
+
+Start stuffing horizontal. Two pebbles next to each other
+
+Find middle point of y axis. We know that both pebbles will live on this line. (pitY + 80) - pitY
+Then we want the left pebble's right to be in the middle and the right pebble's left to be in the middle point (pitX - 80) - pitX
+Since the pebble radius is 5, we should shift the left pebbles x off by 2.5 and the right's by 2.5
+
+
+4 pebble
+-----------
+Repeat 2 pebble logic, but shift each row of 2 down by 2.5
+
+Find middle point of y axis. We know that both pebbles will live on this line. (pitY + 80) - pitY
