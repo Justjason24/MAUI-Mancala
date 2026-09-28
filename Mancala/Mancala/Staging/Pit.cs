@@ -15,7 +15,7 @@ namespace Mancala.Staging
         public int PebbleCount;
         public string Name = "";
 
-        public List<Pebble> Pebbles = new List<Pebble>();
+        public List<Pebble> Pebbles { get; set; } = new List<Pebble>();
 
         public Pit(float x, float y, string name)
         {

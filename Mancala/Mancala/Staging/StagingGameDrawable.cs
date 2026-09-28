@@ -218,7 +218,7 @@ namespace Mancala.Staging
 
             var allPebblesToMove = new List<Pebble>();
 
-            var pebblesAlreadyInPit = destinationPit.Pebbles.Where(x => x.ID != null).ToList();
+            var pebblesAlreadyInPit = destinationPit.Pebbles?.Where(x => x != null).ToList();
 
             allPebblesToMove.AddRange(pebbles);
             allPebblesToMove.AddRange(pebblesAlreadyInPit);
