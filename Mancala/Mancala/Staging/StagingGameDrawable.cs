@@ -18,10 +18,10 @@ namespace Mancala.Staging
 
         public List<Pebble> pebbles = new List<Pebble>()
         {
-            new(100, 150, 5, 100, 150, 1),
-            new(100, 160, 5, 100, 160, 2),
-            new(92, 155, 5, 92, 155, 3),
-            new(108, 155, 5, 108, 155, 4)
+            new(95, 150, 5, 95, 150, 1),
+            new(95, 160, 5, 95, 160, 2),
+            new(105, 150, 5, 105, 150, 3),
+            new(105, 160, 5, 105, 160, 4)
         };
 
         public List<Staging.Pit> pits = new List<Staging.Pit>()
@@ -127,12 +127,19 @@ namespace Mancala.Staging
                 if (pebble.X != pebble.DestinationX)
                 {
                     Console.WriteLine("debug");
-                    pebble.X += 5;
+                    if (pebble.X < pebble.DestinationX)
+                        pebble.X++;
+                    else
+                        pebble.X--;
                 }
 
                 if(pebble.Y != pebble.DestinationY)
                 {
-                    pebble.Y += 5;
+                    Console.WriteLine("debug");
+                    if (pebble.Y < pebble.DestinationY)
+                        pebble.Y++;
+                    else
+                        pebble.Y--;
                 }
             }
         }
@@ -158,14 +165,16 @@ namespace Mancala.Staging
             canvas.DrawRectangle(210, 563, 80, 80);
 
             canvas.StrokeColor = Colors.Maroon;
+            canvas.DrawRectangle(90, 145, 20, 20); 
+
             canvas.DrawRectangle(90, 235, 20, 20); // pebblesBoundX, pebblesBoundY, pebblesBoundSideLength x 2
 
             // start in top left and go gown {pebblesBounds} then move to top right
-            canvas.FillColor = Colors.CornflowerBlue;
-            canvas.FillCircle(95, 240, 5);
-            canvas.FillCircle(95, 250, 5);
-            canvas.FillCircle(105, 240, 5);
-            canvas.FillCircle(105, 250, 5);
+            //canvas.FillColor = Colors.CornflowerBlue;
+            //canvas.FillCircle(95, 240, 5);
+            //canvas.FillCircle(95, 250, 5);
+            //canvas.FillCircle(105, 240, 5);
+            //canvas.FillCircle(105, 250, 5);
 
         }
 
@@ -193,7 +202,7 @@ namespace Mancala.Staging
             if ((x > 10 && x < 350) && (y > 10 && y < 110))
             {
                 //DebugSetPebbleDestination(); // this works - nothing more than animation test. 
-                DebugAnimatePebblesToPit(pebbles.Where(x => x.ID < 5).ToList() ,"Pit01");
+                DebugAnimatePebblesToPit(pebbles.Where(x => x.ID < 5).ToList() ,"Pit13");
             }
         }
 
@@ -220,7 +229,14 @@ namespace Mancala.Staging
 
         public void DebugAnimatePebblesToPit(List<Pebble> pebbles, string desiredPitName)
         {
-            // TODO: Working on this
+            // Pit01 working 
+            // X = 60
+            // Y = 205
+
+            // Pit00 not working
+            // X = 60
+            // Y = 115
+
             // The output of this should be to set each pebble's desired X and Y.
             var destinationPit = pits.Where(x => x.Name.Trim() == desiredPitName).FirstOrDefault();
 
@@ -233,7 +249,7 @@ namespace Mancala.Staging
             var pebblesAlreadyInPit = destinationPit.Pebbles?.Where(x => x != null).ToList();
 
             allPebblesToMove.AddRange(pebbles);
-            allPebblesToMove.AddRange(pebblesAlreadyInPit);
+            //allPebblesToMove.AddRange(pebblesAlreadyInPit);
 
 
 

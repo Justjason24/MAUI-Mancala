@@ -31,7 +31,7 @@ public partial class StagingMancala : ContentPage
         while (gameRunning)
         {
             StagingGameScreen.Invalidate();
-            await Task.Delay(100);
+            await Task.Delay(20);
         }
     }
 
