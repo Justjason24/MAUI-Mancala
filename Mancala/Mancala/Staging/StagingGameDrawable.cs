@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +18,10 @@ namespace Mancala.Staging
 
         public List<Pebble> pebbles = new List<Pebble>()
         {
-            new(100, 150, 5, 100, 150),
-            new(100, 160, 5, 100, 160),
-            new(92, 155, 5, 92, 155),
-            new(108, 155, 5, 108, 155)
+            new(100, 150, 5, 100, 150, 1),
+            new(100, 160, 5, 100, 160, 2),
+            new(92, 155, 5, 92, 155, 3),
+            new(108, 155, 5, 108, 155, 4)
         };
 
         public List<Staging.Pit> pits = new List<Staging.Pit>()
@@ -42,6 +43,13 @@ namespace Mancala.Staging
 
         public void Draw(ICanvas canvas, RectF rect)
         {
+            // set up pit pebble relationship
+            if(!hasGameBegun)
+            {
+                SetPebbletPitRelationship();
+                hasGameBegun = true;
+            }
+
             // set background color
             canvas.FillColor = Colors.Coral;
             canvas.FillRectangle(rect);
@@ -173,7 +181,29 @@ namespace Mancala.Staging
         {
             if ((x > 10 && x < 350) && (y > 10 && y < 110))
             {
-                DebugSetPebbleDestination();
+                //DebugSetPebbleDestination(); // this works - nothing more than animation test. 
+                DebugMovePebblesToPit("Pit01");
+            }
+        }
+
+        public void SetPebbletPitRelationship()
+        {
+            
+            int counter = 0;
+
+            foreach(var pit in pits)
+            {
+
+                for(int i = 1; i <= 4; i++)
+                {
+
+                    // gotta figure out how to count up
+                    int pebbleIdToGet = counter + i;
+                    var pebble = pebbles.Where(x => x.ID == pebbleIdToGet).FirstOrDefault();
+                    pit.Pebbles.Add(pebble);
+                }
+
+                counter += 4; // because each pit starts with 4 pebbles
             }
         }
 
@@ -185,6 +215,7 @@ namespace Mancala.Staging
 
             if (destinationPit == null)
                 throw new Exception("Could not find pit");
+
 
 
         }

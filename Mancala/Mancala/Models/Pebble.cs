@@ -29,7 +29,7 @@ namespace Mancala.Models
             this.Radius = r;
         }
 
-        public Pebble(float x, float y, float r, float destinationX, float destinationY)
+        public Pebble(float x, float y, float r, float destinationX, float destinationY, int id)
         {
             this.X = x;
             this.Y = y;
@@ -37,6 +37,8 @@ namespace Mancala.Models
 
             this.DestinationX = destinationX;
             this.DestinationY = destinationY;
+
+            this.ID = id;
         }
     }
 

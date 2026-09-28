@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mancala.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ namespace Mancala.Staging
         public float SideLength = 80;
         public int PebbleCount;
         public string Name = "";
+
+        public List<Pebble> Pebbles = new List<Pebble>();
 
         public Pit(float x, float y, string name)
         {
