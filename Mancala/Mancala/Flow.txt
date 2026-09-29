@@ -64,4 +64,5 @@ More progress coming along! Actually excited and motivated about this now. I cre
 	kind of comical how slow it is because it's moving 1 pixel per frame. I have an idea on how to speed it up but not a priority for now. Also added all pebbles. I'm going to do some testing
 	on moving pebbles from one pit to another.
 
-Setup some debug methods. Found an error that doesn't display the pebbles correctly when > 9. 
+Setup some debug methods. Found an error that doesn't display the pebbles correctly when > 9. OPE. Figured it out kind of. 
+I need to give those pebbles to the pit

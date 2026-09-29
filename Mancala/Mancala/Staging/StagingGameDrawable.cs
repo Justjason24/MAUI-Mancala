@@ -168,7 +168,7 @@ namespace Mancala.Staging
                 Console.WriteLine();
             }
 
-            DrawDebugPitRects(canvas);
+            //DrawDebugPitRects(canvas);
             SetPebbleCoordsNextTick();
             DrawPebbles(canvas);
 
@@ -362,6 +362,20 @@ namespace Mancala.Staging
                 pebble.DestinationY = firstPebbleY + y_scale;
                 y_scale += 10;
                 pebblesPlaced++;
+
+            }
+
+
+            // this may need to be its own method, but I need to assign the pebbles to said pit.
+            foreach(var pebble in pebbles)
+            {
+                var pitBelongingToPebble = pits.Where(x => x.Pebbles.Contains(pebble)).FirstOrDefault();
+
+                if (pitBelongingToPebble == null)
+                    throw new Exception("NOT GOOD");
+
+                pitBelongingToPebble.Pebbles.Remove(pebble);
+                destinationPit.Pebbles.Add(pebble);
 
             }
 
