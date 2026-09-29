@@ -65,4 +65,8 @@ More progress coming along! Actually excited and motivated about this now. I cre
 	on moving pebbles from one pit to another.
 
 Setup some debug methods. Found an error that doesn't display the pebbles correctly when > 9. OPE. Figured it out kind of. 
-I need to give those pebbles to the pit
+I need to give those pebbles to the pit. Now fixed.
+
+We're cooking to conclude today's programming! I have a sleek method to return which pit was clicked. From there, I began validation on if it's a valid move. Lastly, 
+	created a GameState object. Not sure how I wanna go about start programming the game logic. My intuition is to have two seperate arrays for each side and two stores. However, I'm thinkin
+	maybe it'd be best to have a 14 index array where index 0 and 7 are the stores. This could make looping easier because I can wrap back around. Maybe do this next.

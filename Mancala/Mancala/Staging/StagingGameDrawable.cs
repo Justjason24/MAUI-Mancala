@@ -303,6 +303,17 @@ namespace Mancala.Staging
             }
         }
 
+        public string DeterminePitHit(double x, double y)
+        {
+            foreach(var pit in pits)
+            {
+                if ((x > pit.X && x < pit.X + pit.SideLength) && (y > pit.Y && y < pit.Y + pit.SideLength))
+                    return pit.Name;
+            }
+
+            return "";
+        }
+
         public void SetPebbletPitRelationship()
         {
             

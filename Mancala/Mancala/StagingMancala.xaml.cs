@@ -8,6 +8,8 @@ public partial class StagingMancala : ContentPage
     private bool gameRunning = false;
     private StagingGameDrawable gameDrawable;
 
+    public GameState GameState = new Mancala.Models.GameState();
+
     public StagingMancala()
     {
         InitializeComponent();
@@ -43,12 +45,14 @@ public partial class StagingMancala : ContentPage
         double x = point.Value.X;
         double y = point.Value.Y;
 
-        //gameDrawable.CheckIfStoreHit(x, y);
-
-       // gameDrawable.CheckIfPitIsHit(x, y);
-
         gameDrawable.DebugHitOnStore(x, y);
+
+        string pitClicked = gameDrawable.DeterminePitHit(x, y);
+
+        GameState.ConvertPitClickedToMove(pitClicked);
 
         Console.WriteLine("idk");
     }
+
+
 }
