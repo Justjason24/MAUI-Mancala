@@ -183,19 +183,47 @@ namespace Mancala.Staging
                 if (pebble.X != pebble.DestinationX)
                 {
                     Console.WriteLine("debug");
+
                     if (pebble.X < pebble.DestinationX)
-                        pebble.X++;
+                    {
+                        if (Math.Abs(pebble.X - pebble.DestinationX) > 5)
+                            pebble.X += 5;
+
+                        else
+                            pebble.X++;
+                    }
+                    
                     else
-                        pebble.X--;
+                    {
+                        if (Math.Abs(pebble.X - pebble.DestinationX) > 5)
+                            pebble.X -= 5;
+                        else
+                            pebble.X--;
+                    }
                 }
 
                 if(pebble.Y != pebble.DestinationY)
                 {
                     Console.WriteLine("debug");
+
+
                     if (pebble.Y < pebble.DestinationY)
-                        pebble.Y++;
+                    {
+                        if (Math.Abs(pebble.Y - pebble.DestinationY) > 5)
+                            pebble.Y += 5;
+
+                        else
+                            pebble.Y++;
+                    }
+
                     else
-                        pebble.Y--;
+                    {
+                        if (Math.Abs(pebble.Y - pebble.DestinationY) > 5)
+                            pebble.Y -= 5;
+                        else
+                            pebble.Y--;
+                    }
+                        
                 }
             }
         }
