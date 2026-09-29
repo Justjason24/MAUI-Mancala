@@ -13,7 +13,7 @@ namespace Mancala.Staging
 {
     internal class StagingGameDrawable : IDrawable
     {
-        public static string value = "Test";
+        public int debugCounter = 1;
         public static bool hasGameBegun = false;
 
         public List<Pebble> pebbles = new List<Pebble>()
@@ -258,7 +258,20 @@ namespace Mancala.Staging
             if ((x > 10 && x < 350) && (y > 10 && y < 110))
             {
                 //DebugSetPebbleDestination(); // this works - nothing more than animation test. 
-                DebugAnimatePebblesToPit(pebbles.Where(x => x.ID < 5).ToList() ,"Pit15");
+                if (debugCounter == 1)
+                {
+                    DebugAnimatePebblesToPit(pebbles.Where(x => x.ID < 3).ToList(), "Pit04");
+                    debugCounter++;
+                }
+                else if(debugCounter == 2)
+                {
+                    DebugAnimatePebblesToPit(pebbles.Where(x => x.ID > 45).ToList(), "Pit01");
+                    debugCounter++;
+                }
+                else if(debugCounter == 3)
+                {
+                    DebugAnimatePebblesToPit(pebbles.Where(x => x.ID >= 41 && x.ID <= 44).ToList(), "Pit01");
+                }
             }
         }
 
@@ -305,7 +318,7 @@ namespace Mancala.Staging
             var pebblesAlreadyInPit = destinationPit.Pebbles?.Where(x => x != null).ToList();
 
             allPebblesToMove.AddRange(pebbles);
-            //allPebblesToMove.AddRange(pebblesAlreadyInPit);
+            allPebblesToMove.AddRange(pebblesAlreadyInPit);
 
 
 

@@ -60,3 +60,8 @@ WOW, this was difficult to figure out on my own. My brain hurts but I have a rou
 The next issue is the SetPebbleCoordsNextTick() method. You see, I have the pebbles that need to move with an X, Y and Destination X, Y. But I need to figure out how to have my X approach 
 	the destination X in a predetermined amout of frames? Or maybe that doesn't matter... I just need a way to get my X to approach DestinationX regardless of sign. (Can go positive or negative)
 
+More progress coming along! Actually excited and motivated about this now. I created a way on my own to uniformly place pebbles in a pit. In addition, I also have the animation working. It's 
+	kind of comical how slow it is because it's moving 1 pixel per frame. I have an idea on how to speed it up but not a priority for now. Also added all pebbles. I'm going to do some testing
+	on moving pebbles from one pit to another.
+
+Setup some debug methods. Found an error that doesn't display the pebbles correctly when > 9. 
