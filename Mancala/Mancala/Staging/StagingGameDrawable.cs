@@ -296,7 +296,7 @@ namespace Mancala.Staging
                     DebugAnimatePebblesToPit(pebbles.Where(x => x.ID > 45).ToList(), "Pit01");
                     debugCounter++;
                 }
-                else if(debugCounter == 3)
+                else if (debugCounter == 3)
                 {
                     DebugAnimatePebblesToPit(pebbles.Where(x => x.ID >= 41 && x.ID <= 44).ToList(), "Pit01");
                 }
@@ -305,7 +305,7 @@ namespace Mancala.Staging
 
         public string DeterminePitHit(double x, double y)
         {
-            foreach(var pit in pits)
+            foreach (var pit in pits)
             {
                 if ((x > pit.X && x < pit.X + pit.SideLength) && (y > pit.Y && y < pit.Y + pit.SideLength))
                     return pit.Name;
@@ -421,6 +421,11 @@ namespace Mancala.Staging
             Console.WriteLine();
 
 
+        }
+
+        public void UpdateUI(Models.GameState gameState)
+        {
+            Console.WriteLine("Let the magic begin");
         }
     }
 }
