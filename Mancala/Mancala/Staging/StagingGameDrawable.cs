@@ -1,4 +1,6 @@
-﻿using System;
+﻿//using Android.Content.Res;
+using Mancala.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +9,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
-using Mancala.Models;
 
 namespace Mancala.Staging
 {
@@ -337,13 +338,7 @@ namespace Mancala.Staging
 
         public void DebugAnimatePebblesToPit(List<Pebble> pebbles, string desiredPitName)
         {
-            // Pit01 working 
-            // X = 60
-            // Y = 205
-
-            // Pit00 not working
-            // X = 60
-            // Y = 115
+            // TODO: Rework so that it accepts a single pebble.
 
             // The output of this should be to set each pebble's desired X and Y.
             var destinationPit = pits.Where(x => x.Name.Trim() == desiredPitName).FirstOrDefault();
@@ -426,6 +421,25 @@ namespace Mancala.Staging
         public void UpdateUI(Models.GameState gameState)
         {
             Console.WriteLine("Let the magic begin");
+
+            var pitToRemoveFrom = pits.Where(x => x.Name == gameState.CurrentMove).First();
+
+            var pebblesToRemoveFromSelectedPit = pitToRemoveFrom.Pebbles;
+            int totalPebbleCountToMove = pebblesToRemoveFromSelectedPit.Count;
+
+            if (pebblesToRemoveFromSelectedPit.Count != gameState.PitsToUpdate.Count)
+                throw new Exception("Game state out of whack");
+
+            for(int i = 0; i < totalPebbleCountToMove; i++)
+            {
+                var pebble = pebblesToRemoveFromSelectedPit[i];
+                var pebbleList = new List<Pebble>() { pebble };
+                string pitToMoveTo = gameState.PitsToUpdate.ElementAt(i).Key;
+
+                DebugAnimatePebblesToPit(pebbleList, pitToMoveTo);
+            }
+
+            Console.WriteLine("Let the magic end");
         }
     }
 }

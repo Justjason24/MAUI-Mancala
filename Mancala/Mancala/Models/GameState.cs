@@ -16,6 +16,9 @@ namespace Mancala.Models
         public Dictionary<string, int> GameBoardDictionary = new Dictionary<string, int>();
         public string CurrentMove = "";
 
+        //TODO: Make it a stack, not a dictionary
+        public Dictionary<string, int> PitsToUpdate = new Dictionary<string, int>();
+
         public GameState()
         {
             GameBoardDictionary.Add("TopRightStore", 0);
@@ -50,6 +53,8 @@ namespace Mancala.Models
 
         public void Update()
         {
+            PitsToUpdate.Clear();
+
             int pitClicked = Convert.ToInt32(Char.GetNumericValue(CurrentMove.Last()));
 
             int arrayIndexToStart = GameBoardDictionary[CurrentMove];
@@ -66,6 +71,8 @@ namespace Mancala.Models
                     arrayIndexToStart = 0; 
 
                 GameBoard[arrayIndexToStart]++;
+
+                PitsToUpdate.Add(GameBoardDictionary.Where(x => x.Value == arrayIndexToStart).First().Key, 1);
             }
 
             if (CurrentPlayer == "Left")

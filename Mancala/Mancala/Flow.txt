@@ -70,3 +70,9 @@ I need to give those pebbles to the pit. Now fixed.
 We're cooking to conclude today's programming! I have a sleek method to return which pit was clicked. From there, I began validation on if it's a valid move. Lastly, 
 	created a GameState object. Not sure how I wanna go about start programming the game logic. My intuition is to have two seperate arrays for each side and two stores. However, I'm thinkin
 	maybe it'd be best to have a 14 index array where index 0 and 7 are the stores. This could make looping easier because I can wrap back around. Maybe do this next.
+
+9/29 JOURNAL
+Worked more on the gamestate object. This list of pebbles being passed into the animate method sucks. TODO: Rework so that it accepts a single pebble.
+Also, wonering if the PitsToUpdate should be a stack. TODO: Make it a stack, not a dictionary
+Index out of bounds in my UpdateUI method. Seems easy enough but I'm over it for the night. This thing is starting to spaghetti code but I'm also making progress.
+	Probably need to fix that error than do clean up. FYI for future Jason - that forloop on the third iteration in UpdateUI is where it breaks.
