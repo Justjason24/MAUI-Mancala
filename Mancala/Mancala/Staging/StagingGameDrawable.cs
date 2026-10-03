@@ -289,17 +289,38 @@ namespace Mancala.Staging
                 //DebugSetPebbleDestination(); // this works - nothing more than animation test. 
                 if (debugCounter == 1)
                 {
-                    DebugAnimatePebblesToPit(pebbles.Where(x => x.ID < 3).ToList(), "Pit04");
+                    var testPebblesToMove = pebbles.Where(x => x.ID < 3).ToList();
+
+                    foreach (var pebble in testPebblesToMove)
+                    {
+                        DebugAnimatePebblesToPit(pebble, "Pit04");
+
+                    }
                     debugCounter++;
+
                 }
                 else if(debugCounter == 2)
                 {
-                    DebugAnimatePebblesToPit(pebbles.Where(x => x.ID > 45).ToList(), "Pit01");
+                    var testPebblesToMove = pebbles.Where(x => x.ID > 45).ToList();
+
+                    foreach (var pebble in testPebblesToMove)
+                    {
+                        DebugAnimatePebblesToPit(pebble, "Pit04");
+
+                    }
                     debugCounter++;
                 }
                 else if (debugCounter == 3)
                 {
-                    DebugAnimatePebblesToPit(pebbles.Where(x => x.ID >= 41 && x.ID <= 44).ToList(), "Pit01");
+                    var testPebblesToMove = pebbles.Where(x => x.ID >= 41 && x.ID <= 44).ToList();
+
+                    foreach (var pebble in testPebblesToMove)
+                    {
+                        DebugAnimatePebblesToPit(pebble, "Pit04");
+
+                    }
+
+                    debugCounter++;
                 }
             }
         }
@@ -336,7 +357,7 @@ namespace Mancala.Staging
             }
         }
 
-        public void DebugAnimatePebblesToPit(List<Pebble> pebbles, string desiredPitName)
+        public void DebugAnimatePebblesToPit(Pebble pebbleToMove, string desiredPitName)
         {
             // TODO: Rework so that it accepts a single pebble.
 
@@ -351,7 +372,7 @@ namespace Mancala.Staging
 
             var pebblesAlreadyInPit = destinationPit.Pebbles?.Where(x => x != null).ToList();
 
-            allPebblesToMove.AddRange(pebbles);
+            allPebblesToMove.AddRange(pebbleToMove);
             allPebblesToMove.AddRange(pebblesAlreadyInPit);
 
 
@@ -401,17 +422,22 @@ namespace Mancala.Staging
 
 
             // this may need to be its own method, but I need to assign the pebbles to said pit.
-            foreach(var pebble in pebbles)
-            {
-                var pitBelongingToPebble = pits.Where(x => x.Pebbles.Contains(pebble)).FirstOrDefault();
+            //foreach (var pebble in pebbles)
+            //{
+            //    var pitBelongingToPebble = pits.Where(x => x.Pebbles.Contains(pebble)).FirstOrDefault();
 
-                if (pitBelongingToPebble == null)
-                    throw new Exception("NOT GOOD");
+            //    if (pitBelongingToPebble == null)
+            //        throw new Exception("NOT GOOD");
 
-                pitBelongingToPebble.Pebbles.Remove(pebble);
-                destinationPit.Pebbles.Add(pebble);
+            //    pitBelongingToPebble.Pebbles.Remove(pebble);
+            //    destinationPit.Pebbles.Add(pebble);
 
-            }
+            //}
+
+            var pitBelongingToPebble = pits.Where(x => x.Pebbles.Contains(pebbleToMove)).FirstOrDefault();
+
+            pitBelongingToPebble.Pebbles.Remove(pebbleToMove);
+            destinationPit.Pebbles.Add(pebbleToMove);
 
             Console.WriteLine();
 
@@ -422,24 +448,53 @@ namespace Mancala.Staging
         {
             Console.WriteLine("Let the magic begin");
 
+            // I need to get all 4 actual pebble objects in a list and retain them. My problem is that we have a shallow copy. Making a new list
+            var pebblesToRemoveFromSelectedPit = new List<Pebble>();
+
             var pitToRemoveFrom = pits.Where(x => x.Name == gameState.CurrentMove).First();
 
-            var pebblesToRemoveFromSelectedPit = pitToRemoveFrom.Pebbles;
-            int totalPebbleCountToMove = pebblesToRemoveFromSelectedPit.Count;
-
-            if (pebblesToRemoveFromSelectedPit.Count != gameState.PitsToUpdate.Count)
-                throw new Exception("Game state out of whack");
-
-            for(int i = 0; i < totalPebbleCountToMove; i++)
+            foreach(var pebble in pitToRemoveFrom.Pebbles)
             {
-                var pebble = pebblesToRemoveFromSelectedPit[i];
-                var pebbleList = new List<Pebble>() { pebble };
-                string pitToMoveTo = gameState.PitsToUpdate.ElementAt(i).Key;
-
-                DebugAnimatePebblesToPit(pebbleList, pitToMoveTo);
+                pebblesToRemoveFromSelectedPit.Add(pebble);
             }
 
-            Console.WriteLine("Let the magic end");
+            int totalPebbleCountToMove = pebblesToRemoveFromSelectedPit.Count;
+
+
+            for (int i = 0; i < totalPebbleCountToMove; i++)
+            {
+                var pebble = pebblesToRemoveFromSelectedPit[i];
+
+                string pitToMoveTo = gameState.PitsToUpdate.ElementAt(i).Key;
+
+                DebugAnimatePebblesToPit(pebble, pitToMoveTo);
+            }
+
+
+
+            //var pebblesToRemoveFromSelectedPitCopy = new List<Pebble>();
+            //pebblesToRemoveFromSelectedPitCopy = pits.Where(x => x.Name == gameState.CurrentMove).First().Pebbles;
+
+            //var pitToRemoveFrom = pits.Where(x => x.Name == gameState.CurrentMove).First();
+
+            //var pebblesToRemoveFromSelectedPit = pitToRemoveFrom.Pebbles;
+            //int totalPebbleCountToMove = pebblesToRemoveFromSelectedPit.Count;
+
+            //if (pebblesToRemoveFromSelectedPit.Count != gameState.PitsToUpdate.Count)
+            //    throw new Exception("Game state out of whack");
+
+            ////var pitsToUpdateCopy = new List<>
+
+            //for (int i = 0; i < totalPebbleCountToMove; i++)
+            //{
+            //    var pebble = pebblesToRemoveFromSelectedPitCopy[i];
+
+            //    string pitToMoveTo = gameState.PitsToUpdate.ElementAt(i).Key;
+
+            //    DebugAnimatePebblesToPit(pebble, pitToMoveTo);
+            //}
+
+            //Console.WriteLine("Let the magic end");
         }
     }
 }

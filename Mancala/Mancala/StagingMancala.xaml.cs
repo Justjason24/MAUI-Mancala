@@ -49,10 +49,13 @@ public partial class StagingMancala : ContentPage
 
         string pitClicked = gameDrawable.DeterminePitHit(x, y);
 
-        GameState.ConvertPitClickedToMove(pitClicked);
-        GameState.Update();
+        if(!String.IsNullOrEmpty(pitClicked))
+        {
+            GameState.ConvertPitClickedToMove(pitClicked);
+            GameState.Update();
 
-        gameDrawable.UpdateUI(this.GameState);
+            gameDrawable.UpdateUI(this.GameState);
+        }
 
         Console.WriteLine("idk");
     }

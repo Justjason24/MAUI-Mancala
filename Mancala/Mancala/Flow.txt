@@ -76,3 +76,8 @@ Worked more on the gamestate object. This list of pebbles being passed into the 
 Also, wonering if the PitsToUpdate should be a stack. TODO: Make it a stack, not a dictionary
 Index out of bounds in my UpdateUI method. Seems easy enough but I'm over it for the night. This thing is starting to spaghetti code but I'm also making progress.
 	Probably need to fix that error than do clean up. FYI for future Jason - that forloop on the third iteration in UpdateUI is where it breaks.
+
+10/3 JOURNAL
+Quick little update and hello spooky season. I listened to my old advice and made the Animate method to accept a single Pebble as opposed to a List<>. Unsure if I made the right decision yet.
+Also, fixed the UpdateUI method by creating a new List<Pebbles> to pull from. I think the next thing is maybe refactoring some of this code in a new branch. It's getting hard to maintain
+	and understand. 
