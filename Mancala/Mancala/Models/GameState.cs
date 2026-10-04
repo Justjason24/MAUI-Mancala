@@ -34,7 +34,7 @@ namespace Mancala.Models
         public string CurrentMove = "";
 
         //TODO: Make it a stack, not a dictionary
-        public Dictionary<string, int> PitsToUpdate = new Dictionary<string, int>();
+        public List<string> PitsToUpdate = new List<string>();
 
         public string debugMessage = "starting string";
 
@@ -171,7 +171,7 @@ namespace Mancala.Models
 
                 GameBoard[arrayIndexToStart]++;
 
-                PitsToUpdate.Add(GameBoardDictionary.Where(x => x.Value == arrayIndexToStart).First().Key, 1);
+                PitsToUpdate.Add(GameBoardDictionary.Where(x => x.Value == arrayIndexToStart).First().Key);
             }
 
             if (CurrentPlayer == "Left")
