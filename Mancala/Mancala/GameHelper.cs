@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Mancala.Models;
+using Mancala.Staging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +20,20 @@ namespace Mancala
             }
 
             return "";
+        }
+
+        public static List<Models.Pebble> CreateCopyOfPebbles(List<Mancala.Staging.Pit> currentPits, string currentMove)
+        {
+            var pebblesToRemoveFromSelectedPit = new List<Pebble>();
+
+            var pitToRemoveFrom = currentPits.Where(x => x.Name == currentMove).First();
+
+            foreach (var pebble in pitToRemoveFrom.Pebbles)
+            {
+                pebblesToRemoveFromSelectedPit.Add(pebble);
+            }
+
+            return pebblesToRemoveFromSelectedPit;
         }
     }
 }

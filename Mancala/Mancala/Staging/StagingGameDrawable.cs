@@ -306,6 +306,8 @@ namespace Mancala.Staging
 
             //}
 
+            // TODO . This below needs to be moved.
+
             var pitBelongingToPebble = GameState.Pits.Where(x => x.Pebbles.Contains(pebbleToMove)).FirstOrDefault();
 
             pitBelongingToPebble.Pebbles.Remove(pebbleToMove);
@@ -316,29 +318,41 @@ namespace Mancala.Staging
 
         }
 
-        public void UpdateUI(Models.GameState gameState)
+        /// <summary>
+        ///     This method creates a shallow copy List of all Pebbles from the selected pit into pebblesToRemoveFrom.
+        ///     
+        /// </summary>
+        /// 
+        public void UpdateUI()
         {
             Console.WriteLine("Let the magic begin");
 
             // I need to get all 4 actual pebble objects in a list and retain them. My problem is that we have a shallow copy. Making a new list
-            var pebblesToRemoveFromSelectedPit = new List<Pebble>();
+            //var pebblesToRemoveFromSelectedPit = new List<Pebble>();
 
-            var pitToRemoveFrom = GameState.Pits.Where(x => x.Name == gameState.CurrentMove).First();
+            //var pitToRemoveFrom = GameState.Pits.Where(x => x.Name == gameState.CurrentMove).First();
 
-            foreach(var pebble in pitToRemoveFrom.Pebbles)
+            //foreach(var pebble in pitToRemoveFrom.Pebbles)
+            //{
+            //    pebblesToRemoveFromSelectedPit.Add(pebble);
+            //}
+
+            //int totalPebbleCountToMove = pebblesToRemoveFromSelectedPit.Count;
+
+
+            //for (int i = 0; i < totalPebbleCountToMove; i++)
+            //{
+            //    var pebble = pebblesToRemoveFromSelectedPit[i];
+
+            //    string pitToMoveTo = gameState.PitsToUpdate.ElementAt(i).Key;
+
+            //    DebugAnimatePebblesToPit(pebble, pitToMoveTo);
+            //}
+
+            for(int i = 0; i < this.GameState.PebblesToMove.Count; i++)
             {
-                pebblesToRemoveFromSelectedPit.Add(pebble);
-            }
-
-            int totalPebbleCountToMove = pebblesToRemoveFromSelectedPit.Count;
-
-
-            for (int i = 0; i < totalPebbleCountToMove; i++)
-            {
-                var pebble = pebblesToRemoveFromSelectedPit[i];
-
-                string pitToMoveTo = gameState.PitsToUpdate.ElementAt(i).Key;
-
+                var pebble = this.GameState.Pebbles[i];
+                string pitToMoveTo = GameState.PitsToUpdate.ElementAt(i).Key;
                 DebugAnimatePebblesToPit(pebble, pitToMoveTo);
             }
 

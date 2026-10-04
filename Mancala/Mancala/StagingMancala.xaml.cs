@@ -60,7 +60,7 @@ public partial class StagingMancala : ContentPage
             GameState.ConvertPitClickedToMove(pitClicked);
             GameState.Update();
 
-            gameDrawable.UpdateUI(this.GameState);
+            gameDrawable.UpdateUI();
         }
 
         Console.WriteLine("idk");

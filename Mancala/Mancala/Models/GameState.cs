@@ -119,6 +119,9 @@ namespace Mancala.Models
             new(210, 563, "Pit15")
         };
 
+        public List<Pebble> PebblesToMove = new List<Pebble>();
+
+
         public GameState()
         {
             SetPebbletPitRelationship();
@@ -140,13 +143,18 @@ namespace Mancala.Models
 
         /// <summary>
         ///     The goal of this method is the following:
-        ///         - 
+        /// 
+        ///         - Update the class property GameBoard[] (
+        ///         - Update the PitsToUpdate. Each one will be getting one more pebble
+        ///         - Set next players turn
+        ///         - Obtain List<Pebbles> that belong to selectedPit
         /// </summary>
         public void Update()
         {
             
 
             PitsToUpdate.Clear();
+            PebblesToMove.Clear();
 
             int arrayIndexToStart = GameBoardDictionary[CurrentMove];
 
@@ -170,6 +178,12 @@ namespace Mancala.Models
                 CurrentPlayer = "Right";
             else
                 CurrentPlayer = "Left";
+
+
+            this.PebblesToMove = GameHelper.CreateCopyOfPebbles(this.Pits, this.CurrentMove);
+
+
+
         }
 
         public void SetPebbletPitRelationship()
