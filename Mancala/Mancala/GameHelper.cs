@@ -22,7 +22,7 @@ namespace Mancala
             return "";
         }
 
-        public static List<Models.Pebble> CreateCopyOfPebbles(List<Mancala.Staging.Pit> currentPits, string currentMove)
+        public static List<Models.Pebble> CreateCopyOfPebblesFromSelectedPit(List<Mancala.Staging.Pit> currentPits, string currentMove)
         {
             var pebblesToRemoveFromSelectedPit = new List<Pebble>();
 

@@ -180,10 +180,10 @@ namespace Mancala.Models
                 CurrentPlayer = "Left";
 
 
-            this.PebblesToMove = GameHelper.CreateCopyOfPebbles(this.Pits, this.CurrentMove);
+            this.PebblesToMove = GameHelper.CreateCopyOfPebblesFromSelectedPit(this.Pits, this.CurrentMove);
 
 
-
+            RemovePebblesFromSelectedPit();
         }
 
         public void SetPebbletPitRelationship()
@@ -205,6 +205,13 @@ namespace Mancala.Models
 
                 counter += 4; // because each pit starts with 4 pebbles
             }
+        }
+
+        public void RemovePebblesFromSelectedPit()
+        {
+            var selectedPit = this.Pits.Where(x => x.Name == this.CurrentMove).First();
+
+            selectedPit.Pebbles.Clear();
         }
     }
 }

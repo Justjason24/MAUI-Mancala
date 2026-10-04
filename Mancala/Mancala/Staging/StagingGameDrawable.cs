@@ -308,9 +308,9 @@ namespace Mancala.Staging
 
             // TODO . This below needs to be moved.
 
-            var pitBelongingToPebble = GameState.Pits.Where(x => x.Pebbles.Contains(pebbleToMove)).FirstOrDefault();
+            //var pitBelongingToPebble = GameState.Pits.Where(x => x.Pebbles.Contains(pebbleToMove)).FirstOrDefault();
 
-            pitBelongingToPebble.Pebbles.Remove(pebbleToMove);
+            //pitBelongingToPebble.Pebbles.Remove(pebbleToMove);
             destinationPit.Pebbles.Add(pebbleToMove);
 
             Console.WriteLine();
@@ -325,30 +325,6 @@ namespace Mancala.Staging
         /// 
         public void UpdateUI()
         {
-            Console.WriteLine("Let the magic begin");
-
-            // I need to get all 4 actual pebble objects in a list and retain them. My problem is that we have a shallow copy. Making a new list
-            //var pebblesToRemoveFromSelectedPit = new List<Pebble>();
-
-            //var pitToRemoveFrom = GameState.Pits.Where(x => x.Name == gameState.CurrentMove).First();
-
-            //foreach(var pebble in pitToRemoveFrom.Pebbles)
-            //{
-            //    pebblesToRemoveFromSelectedPit.Add(pebble);
-            //}
-
-            //int totalPebbleCountToMove = pebblesToRemoveFromSelectedPit.Count;
-
-
-            //for (int i = 0; i < totalPebbleCountToMove; i++)
-            //{
-            //    var pebble = pebblesToRemoveFromSelectedPit[i];
-
-            //    string pitToMoveTo = gameState.PitsToUpdate.ElementAt(i).Key;
-
-            //    DebugAnimatePebblesToPit(pebble, pitToMoveTo);
-            //}
-
             for(int i = 0; i < this.GameState.PebblesToMove.Count; i++)
             {
                 var pebble = this.GameState.Pebbles[i];
@@ -356,31 +332,6 @@ namespace Mancala.Staging
                 DebugAnimatePebblesToPit(pebble, pitToMoveTo);
             }
 
-
-
-            //var pebblesToRemoveFromSelectedPitCopy = new List<Pebble>();
-            //pebblesToRemoveFromSelectedPitCopy = pits.Where(x => x.Name == gameState.CurrentMove).First().Pebbles;
-
-            //var pitToRemoveFrom = pits.Where(x => x.Name == gameState.CurrentMove).First();
-
-            //var pebblesToRemoveFromSelectedPit = pitToRemoveFrom.Pebbles;
-            //int totalPebbleCountToMove = pebblesToRemoveFromSelectedPit.Count;
-
-            //if (pebblesToRemoveFromSelectedPit.Count != gameState.PitsToUpdate.Count)
-            //    throw new Exception("Game state out of whack");
-
-            ////var pitsToUpdateCopy = new List<>
-
-            //for (int i = 0; i < totalPebbleCountToMove; i++)
-            //{
-            //    var pebble = pebblesToRemoveFromSelectedPitCopy[i];
-
-            //    string pitToMoveTo = gameState.PitsToUpdate.ElementAt(i).Key;
-
-            //    DebugAnimatePebblesToPit(pebble, pitToMoveTo);
-            //}
-
-            //Console.WriteLine("Let the magic end");
         }
     }
 }
