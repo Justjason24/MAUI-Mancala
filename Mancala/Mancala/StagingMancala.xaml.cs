@@ -19,6 +19,10 @@ public partial class StagingMancala : ContentPage
     {
         base.OnAppearing();
         gameDrawable = (StagingGameDrawable)StagingGameScreen.Drawable;
+
+        var gameState = new GameState();
+        gameDrawable.GameState = gameState;
+
         StartGameLoop();
     }
 
