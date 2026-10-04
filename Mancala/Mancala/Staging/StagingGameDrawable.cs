@@ -15,13 +15,10 @@ namespace Mancala.Staging
     internal class StagingGameDrawable : IDrawable
     {
         public int debugCounter = 1;
-        public static bool hasGameBegun = false;
-
         public GameState GameState = new GameState();
 
         public void Draw(ICanvas canvas, RectF rect)
         {
-            // set up pit pebble relationship
 
             // set background color
             canvas.FillColor = Colors.Coral;
@@ -188,7 +185,6 @@ namespace Mancala.Staging
             }
         }
 
-
         public void DebugHitOnStore(double x, double y)
         {
             if ((x > 10 && x < 350) && (y > 10 && y < 110))
@@ -232,8 +228,6 @@ namespace Mancala.Staging
                 }
             }
         }
-
-
 
         public void DebugAnimatePebblesToPit(Pebble pebbleToMove, string desiredPitName)
         {

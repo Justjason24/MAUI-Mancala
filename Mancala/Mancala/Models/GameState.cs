@@ -138,11 +138,15 @@ namespace Mancala.Models
             this.CurrentMove = pitClicked;
         }
 
+        /// <summary>
+        ///     The goal of this method is the following:
+        ///         - 
+        /// </summary>
         public void Update()
         {
-            PitsToUpdate.Clear();
+            
 
-            int pitClicked = Convert.ToInt32(Char.GetNumericValue(CurrentMove.Last()));
+            PitsToUpdate.Clear();
 
             int arrayIndexToStart = GameBoardDictionary[CurrentMove];
 
