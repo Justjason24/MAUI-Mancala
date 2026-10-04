@@ -14,7 +14,23 @@ namespace Mancala.Models
         public string CurrentPlayer = "Left";
         public int[] GameBoard = new int[] {0, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4};
 
-        public Dictionary<string, int> GameBoardDictionary = new Dictionary<string, int>();
+        public Dictionary<string, int> GameBoardDictionary = new Dictionary<string, int>()
+        {
+            ["TopRightStore"] = 0,
+            ["Pit00"] = 1,
+            ["Pit01"] = 2,
+            ["Pit02"] = 3,
+            ["Pit03"] = 4,
+            ["Pit04"] = 5,
+            ["Pit05"] = 6,
+            ["BottomLeft"] = 7,
+            ["Pit15"] = 8,
+            ["Pit14"] = 9,
+            ["Pit13"] = 10,
+            ["Pit12"] = 11,
+            ["Pit11"] = 12,
+            ["Pit10"] = 13,
+        };
         public string CurrentMove = "";
 
         //TODO: Make it a stack, not a dictionary
@@ -105,22 +121,6 @@ namespace Mancala.Models
 
         public GameState()
         {
-            //TODO move this stuff out of ctor, just declare it as a property.
-            GameBoardDictionary.Add("TopRightStore", 0);
-            GameBoardDictionary.Add("Pit00", 1);
-            GameBoardDictionary.Add("Pit01", 2);
-            GameBoardDictionary.Add("Pit02", 3);
-            GameBoardDictionary.Add("Pit03", 4);
-            GameBoardDictionary.Add("Pit04", 5);
-            GameBoardDictionary.Add("Pit05", 6);
-            GameBoardDictionary.Add("BottomLeft", 7);
-            GameBoardDictionary.Add("Pit15", 8);
-            GameBoardDictionary.Add("Pit14", 9);
-            GameBoardDictionary.Add("Pit13", 10);
-            GameBoardDictionary.Add("Pit12", 11);
-            GameBoardDictionary.Add("Pit11", 12);
-            GameBoardDictionary.Add("Pit10", 13);
-
             SetPebbletPitRelationship();
         }
 

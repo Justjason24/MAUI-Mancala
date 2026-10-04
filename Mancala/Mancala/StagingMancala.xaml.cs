@@ -20,8 +20,10 @@ public partial class StagingMancala : ContentPage
         base.OnAppearing();
         gameDrawable = (StagingGameDrawable)StagingGameScreen.Drawable;
 
+        //PSEUDO data binding. The Drawable and this class are pointed to the same instance.
         var gameState = new GameState();
         gameDrawable.GameState = gameState;
+        this.GameState = gameState;
 
         StartGameLoop();
     }
@@ -49,9 +51,11 @@ public partial class StagingMancala : ContentPage
         double x = point.Value.X;
         double y = point.Value.Y;
 
+        string pitClicked = GameHelper.DeterminePitHit(this.GameState, x, y);
+
         gameDrawable.DebugHitOnStore(x, y);
 
-        string pitClicked = gameDrawable.DeterminePitHit(x, y);
+        
 
         if(!String.IsNullOrEmpty(pitClicked))
         {

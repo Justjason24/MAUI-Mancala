@@ -188,20 +188,12 @@ namespace Mancala.Staging
             }
         }
 
-        public void DebugSetPebbleDestination()
-        {
-            // for right now I'm saying move all the pebbles down a bit.
-            foreach (var pebblesToMove in GameState.Pebbles)
-            {
-                pebblesToMove.DestinationY += 100;
-            }
-        }
-
 
         public void DebugHitOnStore(double x, double y)
         {
             if ((x > 10 && x < 350) && (y > 10 && y < 110))
             {
+                GameState.debugMessage = "CHANGED AGAIN";
                 //DebugSetPebbleDestination(); // this works - nothing more than animation test. 
                 if (debugCounter == 1)
                 {
@@ -241,16 +233,6 @@ namespace Mancala.Staging
             }
         }
 
-        public string DeterminePitHit(double x, double y)
-        {
-            foreach (var pit in GameState.Pits)
-            {
-                if ((x > pit.X && x < pit.X + pit.SideLength) && (y > pit.Y && y < pit.Y + pit.SideLength))
-                    return pit.Name;
-            }
-
-            return "";
-        }
 
 
         public void DebugAnimatePebblesToPit(Pebble pebbleToMove, string desiredPitName)
