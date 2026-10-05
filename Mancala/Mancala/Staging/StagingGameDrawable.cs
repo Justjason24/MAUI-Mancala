@@ -21,8 +21,7 @@ namespace Mancala.Staging
         {
 
             // set background color
-            canvas.FillColor = Colors.Coral;
-            canvas.FillRectangle(rect);
+            DrawBackground(canvas, rect);
 
             // draw game stores
 
@@ -292,25 +291,7 @@ namespace Mancala.Staging
 
             }
 
-
-            // this may need to be its own method, but I need to assign the pebbles to said pit.
-            //foreach (var pebble in pebbles)
-            //{
-            //    var pitBelongingToPebble = pits.Where(x => x.Pebbles.Contains(pebble)).FirstOrDefault();
-
-            //    if (pitBelongingToPebble == null)
-            //        throw new Exception("NOT GOOD");
-
-            //    pitBelongingToPebble.Pebbles.Remove(pebble);
-            //    destinationPit.Pebbles.Add(pebble);
-
-            //}
-
             // TODO . This below needs to be moved.
-
-            //var pitBelongingToPebble = GameState.Pits.Where(x => x.Pebbles.Contains(pebbleToMove)).FirstOrDefault();
-
-            //pitBelongingToPebble.Pebbles.Remove(pebbleToMove);
             destinationPit.Pebbles.Add(pebbleToMove);
 
             Console.WriteLine();
@@ -330,6 +311,12 @@ namespace Mancala.Staging
                 DebugAnimatePebblesToPit(pebble, pitToMoveTo);
             }
 
+        }
+
+        public void DrawBackground(ICanvas canvas, RectF rect)
+        {
+            canvas.FillColor = Colors.Coral;
+            canvas.FillRectangle(rect);
         }
     }
 }
