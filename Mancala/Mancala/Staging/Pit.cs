@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mancala.Staging
 {
-    internal class Pit
+    public class Pit
     {
         public float X;
         public float Y;
