@@ -284,6 +284,7 @@ namespace Mancala.Staging
             if (this.GameState.PitsToUpdate.Count != this.GameState.PebblesToMove.Count)
                 throw new Exception("Moving more pebbles than pits or vice versa");
 
+
             for(int i = 0; i < this.GameState.PebblesToMove.Count; i++)
             {
                 var pebble = this.GameState.PebblesToMove[i];
