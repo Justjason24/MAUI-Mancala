@@ -19,34 +19,14 @@ namespace Mancala.Staging
 
         public void Draw(ICanvas canvas, RectF rect)
         {
-
-            // set background color
             DrawBackground(canvas, rect);
 
-            // draw game stores
-
-            //set up the data for the stores
-            float storeHeight = 100f;
-            var GameStores = new List<Store>
-            {
-                new Store {X = 10, Y = 10, Width = rect.Width - 20, Height = storeHeight, CornerRadius = 25}, // top store
-                new Store {X = 10, Y = rect.Height - storeHeight - 10, Width = rect.Width - 20, Height = storeHeight, CornerRadius = 25} // bottom store
-            };
-
-
-            // actually draw the the stores
-            foreach (var store in GameStores)
-            {
-                canvas.FillColor = Colors.White;
-                canvas.StrokeColor = Colors.Black;
-                canvas.FillRoundedRectangle(store.X, store.Y, rect.Width - 20, store.Height, store.CornerRadius);
-
-            }
+            DrawGameStores(canvas, rect);
 
 
             // pit logic
             float pitRadius = 40;
-            var workingVerticalSpace = rect.Height - GameStores.Sum(s => s.Height) - 10 - 10; // 10 padding on top store and bottom
+            var workingVerticalSpace = rect.Height - this.GameState.Stores.Sum(s => s.Height) - 10 - 10; // 10 padding on top store and bottom
             var verticalSpacePerPitToWorkWith = workingVerticalSpace / 6; // 89.3
             var verticalPointer = 110 + verticalSpacePerPitToWorkWith;
             float pitY = (verticalPointer + 110) / 2.0f;
@@ -306,7 +286,7 @@ namespace Mancala.Staging
 
             for(int i = 0; i < this.GameState.PebblesToMove.Count; i++)
             {
-                var pebble = this.GameState.Pebbles[i];
+                var pebble = this.GameState.PebblesToMove[i];
                 string pitToMoveTo = GameState.PitsToUpdate.ElementAt(i);
                 DebugAnimatePebblesToPit(pebble, pitToMoveTo);
             }
@@ -317,6 +297,17 @@ namespace Mancala.Staging
         {
             canvas.FillColor = Colors.Coral;
             canvas.FillRectangle(rect);
+        }
+
+        public void DrawGameStores(ICanvas canvas, RectF rect)
+        {
+            foreach (var store in this.GameState.Stores)
+            {
+                canvas.FillColor = Colors.White;
+                canvas.StrokeColor = Colors.Black;
+                canvas.FillRoundedRectangle(store.X, store.Y, rect.Width - 20, store.Height, 25);
+
+            }
         }
     }
 }

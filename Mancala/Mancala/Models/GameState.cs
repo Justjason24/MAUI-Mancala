@@ -121,6 +121,12 @@ namespace Mancala.Models
 
         public List<Pebble> PebblesToMove = new List<Pebble>();
 
+        public List<Store> Stores = new List<Store>()
+        {
+            new(10, 10, 355.2F, "TopRightStore"),
+            new(10, 648.8F, 355.2F, "BottomLeftStore")
+        };
+
 
         public GameState()
         {

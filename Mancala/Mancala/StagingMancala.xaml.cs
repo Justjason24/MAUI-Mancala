@@ -53,7 +53,7 @@ public partial class StagingMancala : ContentPage
 
         string pitClicked = GameHelper.DeterminePitHit(this.GameState, x, y);
 
-        gameDrawable.DebugHitOnStore(x, y);    
+       // gameDrawable.DebugHitOnStore(x, y);    
 
         if(!String.IsNullOrEmpty(pitClicked))
         {

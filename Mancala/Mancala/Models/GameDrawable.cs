@@ -28,23 +28,23 @@ namespace Mancala.Models
             // draw game stores
 
             //set up the data for the stores
-            float storeHeight = 100f;
-            var GameStores = new List<Store>
-            {
-                new Store {X = 10, Y = 10, Width = rect.Width - 20, Height = storeHeight, CornerRadius = 25}, // top store
-                new Store {X = 10, Y = rect.Height - storeHeight - 10, Width = rect.Width - 20, Height = storeHeight, CornerRadius = 25} // bottom store
-            };
+            //float storeHeight = 100f;
+            //var GameStores = new List<Store>
+            //{
+            //    new Store {X = 10, Y = 10, Width = rect.Width - 20, Height = storeHeight, CornerRadius = 25}, // top store
+            //    new Store {X = 10, Y = rect.Height - storeHeight - 10, Width = rect.Width - 20, Height = storeHeight, CornerRadius = 25} // bottom store
+            //};
 
-            stores = GameStores;
+            //stores = GameStores;
 
-            // actually draw them
-            foreach (var store in GameStores)
-            {
-                canvas.FillColor = Colors.White;
-                canvas.StrokeColor = Colors.Black;
-                canvas.FillRoundedRectangle(store.X, store.Y, rect.Width - 20, store.Height, store.CornerRadius);
+            //// actually draw them
+            //foreach (var store in GameStores)
+            //{
+            //    canvas.FillColor = Colors.White;
+            //    canvas.StrokeColor = Colors.Black;
+            //    canvas.FillRoundedRectangle(store.X, store.Y, rect.Width - 20, store.Height, store.CornerRadius);
 
-            }
+            //}
 
 
             // pit logic
