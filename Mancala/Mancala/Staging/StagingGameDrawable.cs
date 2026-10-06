@@ -1,4 +1,5 @@
 ﻿//using Android.Content.Res;
+// using AndroidX.Activity;
 using Mancala.Models;
 using System;
 using System.Collections.Generic;
@@ -19,34 +20,15 @@ namespace Mancala.Staging
 
         public void Draw(ICanvas canvas, RectF rect)
         {
-
-            // set background color
             DrawBackground(canvas, rect);
 
-            // draw game stores
+            DrawGameStores(canvas, rect);
 
-            //set up the data for the stores
-            float storeHeight = 100f;
-            var GameStores = new List<Store>
-            {
-                new Store {X = 10, Y = 10, Width = rect.Width - 20, Height = storeHeight, CornerRadius = 25}, // top store
-                new Store {X = 10, Y = rect.Height - storeHeight - 10, Width = rect.Width - 20, Height = storeHeight, CornerRadius = 25} // bottom store
-            };
-
-
-            // actually draw the the stores
-            foreach (var store in GameStores)
-            {
-                canvas.FillColor = Colors.White;
-                canvas.StrokeColor = Colors.Black;
-                canvas.FillRoundedRectangle(store.X, store.Y, rect.Width - 20, store.Height, store.CornerRadius);
-
-            }
-
+            DrawDebugRectsAroundStore(canvas, rect);
 
             // pit logic
             float pitRadius = 40;
-            var workingVerticalSpace = rect.Height - GameStores.Sum(s => s.Height) - 10 - 10; // 10 padding on top store and bottom
+            var workingVerticalSpace = rect.Height - this.GameState.Stores.Sum(s => s.Height) - 10 - 10; // 10 padding on top store and bottom
             var verticalSpacePerPitToWorkWith = workingVerticalSpace / 6; // 89.3
             var verticalPointer = 110 + verticalSpacePerPitToWorkWith;
             float pitY = (verticalPointer + 110) / 2.0f;
@@ -192,23 +174,35 @@ namespace Mancala.Staging
                 //DebugSetPebbleDestination(); // this works - nothing more than animation test. 
                 if (debugCounter == 1)
                 {
-                    var testPebblesToMove = GameState.Pebbles.Where(x => x.ID < 3).ToList();
+                    //var testPebblesToMove = GameState.Pebbles.Where(x => x.ID < 3).ToList();
 
-                    foreach (var pebble in testPebblesToMove)
+                    //foreach (var pebble in testPebblesToMove)
+                    //{
+                    //    DebugAnimatePebblesToPit(pebble, "Pit04");
+
+                    //}
+
+                    var testPebbleToMove = GameState.Pebbles.Where(x => x.ID > 24 && x.ID <= 30).ToList();
+
+                    foreach (var pebble in testPebbleToMove)
                     {
-                        DebugAnimatePebblesToPit(pebble, "Pit04");
+                        AnimatePebbleToStore(pebble, "TopRightStore");
 
                     }
+
+                    //AnimatePebbleToStore(testPebbleToMove, "TopRightStore");
                     debugCounter++;
 
                 }
                 else if(debugCounter == 2)
                 {
-                    var testPebblesToMove = GameState.Pebbles.Where(x => x.ID > 45).ToList();
+                    var testPebbleToMove = GameState.Pebbles.Where(x => x.ID < 8).ToList();
+                    //AnimatePebbleToStore(testPebbleToMove, "BottomLeftStore");
+                    //var testPebblesToMove = GameState.Pebbles.Where(x => x.ID > 45).ToList();
 
-                    foreach (var pebble in testPebblesToMove)
+                    foreach (var pebble in testPebbleToMove)
                     {
-                        DebugAnimatePebblesToPit(pebble, "Pit04");
+                        AnimatePebbleToStore(pebble, "BottomLeftStore");
 
                     }
                     debugCounter++;
@@ -230,8 +224,6 @@ namespace Mancala.Staging
 
         public void DebugAnimatePebblesToPit(Pebble pebbleToMove, string desiredPitName)
         {
-            // TODO: Rework so that it accepts a single pebble.
-
             // The output of this should be to set each pebble's desired X and Y.
             var destinationPit = GameState.Pits.Where(x => x.Name.Trim() == desiredPitName).FirstOrDefault();
 
@@ -299,14 +291,77 @@ namespace Mancala.Staging
 
         }
 
+        public void AnimatePebbleToStore(Pebble pebbleToMove, string desiredStoreName)
+        {
+            // The output of this should be to set each pebble's desired X and Y.
+            var destinationStore = GameState.Stores.Where(x => x.Name.Trim() == desiredStoreName).FirstOrDefault();
+
+            if (destinationStore == null)
+                throw new Exception("Could not find pit");
+
+            var allPebblesToMove = new List<Pebble>();
+
+            var pebblesAlreadyInStore = destinationStore.Pebbles.Where(x => x != null).ToList();
+
+            allPebblesToMove.AddRange(pebbleToMove);
+            allPebblesToMove.AddRange(pebblesAlreadyInStore);
+
+            if (allPebblesToMove.Count == 0)
+                throw new Exception("idk how this happened");
+
+
+            Console.WriteLine("Let some maths begin");
+            // Remember, a pebble's radius is 5 (diamter is 10)
+            // Convert Destination X, and Y to ints so there are no decimals.
+
+            int x_scale = 10;
+            int startingX = 0;
+            int pebblesPlaced = 0;
+
+            foreach (var pebble in allPebblesToMove)
+            {
+                if(pebblesPlaced == 0)
+                {
+                    startingX = Convert.ToInt32((destinationStore.Width / 2) + destinationStore.X);
+                    pebble.DestinationX = startingX;
+                    pebble.DestinationY = Convert.ToInt32((destinationStore.Height / 2) + destinationStore.Y);
+                    pebblesPlaced++;
+                    continue;
+                }
+
+                // 1 % 2 = 1 
+                // 2 % 2 = 0
+                // 3 % 2 = 1
+                if(pebblesPlaced % 2 == 1)
+                {
+                    pebble.DestinationX = startingX + x_scale;
+                    pebble.DestinationY = Convert.ToInt32((destinationStore.Height / 2) + destinationStore.Y);
+                    pebblesPlaced++;
+                }
+                else if(pebblesPlaced % 2 == 0)
+                {
+                    pebble.DestinationX = startingX - x_scale;
+                    pebble.DestinationY = Convert.ToInt32((destinationStore.Height / 2) + destinationStore.Y);
+                    x_scale += 10;
+                    pebblesPlaced++;
+                }
+
+            }
+
+            destinationStore.Pebbles.Add(pebbleToMove);
+
+            Console.WriteLine("Did I do it yet??");
+        }
+
         public void UpdateUI()
         {
             if (this.GameState.PitsToUpdate.Count != this.GameState.PebblesToMove.Count)
                 throw new Exception("Moving more pebbles than pits or vice versa");
 
+
             for(int i = 0; i < this.GameState.PebblesToMove.Count; i++)
             {
-                var pebble = this.GameState.Pebbles[i];
+                var pebble = this.GameState.PebblesToMove[i];
                 string pitToMoveTo = GameState.PitsToUpdate.ElementAt(i);
                 DebugAnimatePebblesToPit(pebble, pitToMoveTo);
             }
@@ -317,6 +372,25 @@ namespace Mancala.Staging
         {
             canvas.FillColor = Colors.Coral;
             canvas.FillRectangle(rect);
+        }
+
+        public void DrawGameStores(ICanvas canvas, RectF rect)
+        {
+            foreach (var store in this.GameState.Stores)
+            {
+                canvas.FillColor = Colors.White;
+                canvas.StrokeColor = Colors.Black;
+                canvas.FillRoundedRectangle(store.X, store.Y, rect.Width - 20, store.Height, 25);
+
+            }
+        }
+
+        public void DrawDebugRectsAroundStore(ICanvas canvas, RectF dirtyRect)
+        {
+            canvas.StrokeColor = Colors.MediumPurple;
+            canvas.FillColor = Colors.MediumOrchid;
+            canvas.DrawRectangle(10, 10, 355.2F, 100);
+            canvas.DrawRectangle(10, 648.8F, 355.2F, 100);
         }
     }
 }

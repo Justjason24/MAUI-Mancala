@@ -81,3 +81,13 @@ Index out of bounds in my UpdateUI method. Seems easy enough but I'm over it for
 Quick little update and hello spooky season. I listened to my old advice and made the Animate method to accept a single Pebble as opposed to a List<>. Unsure if I made the right decision yet.
 Also, fixed the UpdateUI method by creating a new List<Pebbles> to pull from. I think the next thing is maybe refactoring some of this code in a new branch. It's getting hard to maintain
 	and understand. 
+
+10/4 JOURNAL
+Lots of refactoring today. Trying to move stuff away from the GraphicsView and move to the GameState class. I want the GraphicsView to just draw.
+In addition, I also have some 'pseudo' data binding. Thinks to the power of pointers / references, I instantiate a GameState object and assign it as a class field
+	to both the GraphicsView and the Manacala.xaml.cs. Since the same instance was assigned to both classes, I can manipulate the GameState in one place
+	and the other place knows about it! Cool! Got this all done in another branch and merged it into main.
+	
+Idk how far I'll get but I'm working on the GameStore logic. It needs some love and have been skipping out on it to make the proof-of-concept come together.
+I need to make another animate method AnimateToStore(Pebble p, string storeName) similar to the Pit animate method. Also need to consider how to arrange pebbles
+	belonging to the store. Working on this now in my next branch.
