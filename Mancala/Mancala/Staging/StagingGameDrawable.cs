@@ -182,7 +182,7 @@ namespace Mancala.Staging
 
                     //}
 
-                    var testPebbleToMove = GameState.Pebbles.Where(x => x.ID > 27 && x.ID <= 30).ToList();
+                    var testPebbleToMove = GameState.Pebbles.Where(x => x.ID > 24 && x.ID <= 30).ToList();
 
                     foreach (var pebble in testPebbleToMove)
                     {
@@ -196,15 +196,15 @@ namespace Mancala.Staging
                 }
                 else if(debugCounter == 2)
                 {
-                    var testPebbleToMove = GameState.Pebbles.Where(x => x.ID == 24).First();
-                    AnimatePebbleToStore(testPebbleToMove, "BottomLeftStore");
+                    var testPebbleToMove = GameState.Pebbles.Where(x => x.ID < 8).ToList();
+                    //AnimatePebbleToStore(testPebbleToMove, "BottomLeftStore");
                     //var testPebblesToMove = GameState.Pebbles.Where(x => x.ID > 45).ToList();
 
-                    //foreach (var pebble in testPebblesToMove)
-                    //{
-                    //    DebugAnimatePebblesToPit(pebble, "Pit04");
+                    foreach (var pebble in testPebbleToMove)
+                    {
+                        AnimatePebbleToStore(pebble, "BottomLeftStore");
 
-                    //}
+                    }
                     debugCounter++;
                 }
                 else if (debugCounter == 3)
@@ -326,6 +326,7 @@ namespace Mancala.Staging
                     pebble.DestinationX = startingX;
                     pebble.DestinationY = Convert.ToInt32((destinationStore.Height / 2) + destinationStore.Y);
                     pebblesPlaced++;
+                    continue;
                 }
 
                 // 1 % 2 = 1 
