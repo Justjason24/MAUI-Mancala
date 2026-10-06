@@ -182,8 +182,15 @@ namespace Mancala.Staging
 
                     //}
 
-                    var testPebbleToMove = GameState.Pebbles.Where(x => x.ID == 27).First();
-                    AnimatePebbleToStore(testPebbleToMove, "TopRightStore");
+                    var testPebbleToMove = GameState.Pebbles.Where(x => x.ID > 27 && x.ID <= 30).ToList();
+
+                    foreach (var pebble in testPebbleToMove)
+                    {
+                        AnimatePebbleToStore(pebble, "TopRightStore");
+
+                    }
+
+                    //AnimatePebbleToStore(testPebbleToMove, "TopRightStore");
                     debugCounter++;
 
                 }
@@ -307,10 +314,37 @@ namespace Mancala.Staging
             // Remember, a pebble's radius is 5 (diamter is 10)
             // Convert Destination X, and Y to ints so there are no decimals.
 
+            int x_scale = 10;
+            int startingX = 0;
+            int pebblesPlaced = 0;
+
             foreach (var pebble in allPebblesToMove)
             {
-                pebble.DestinationX = Convert.ToInt32((destinationStore.Width / 2) + destinationStore.X);
-                pebble.DestinationY = Convert.ToInt32((destinationStore.Height / 2) + destinationStore.Y);
+                if(pebblesPlaced == 0)
+                {
+                    startingX = Convert.ToInt32((destinationStore.Width / 2) + destinationStore.X);
+                    pebble.DestinationX = startingX;
+                    pebble.DestinationY = Convert.ToInt32((destinationStore.Height / 2) + destinationStore.Y);
+                    pebblesPlaced++;
+                }
+
+                // 1 % 2 = 1 
+                // 2 % 2 = 0
+                // 3 % 2 = 1
+                if(pebblesPlaced % 2 == 1)
+                {
+                    pebble.DestinationX = startingX + x_scale;
+                    pebble.DestinationY = Convert.ToInt32((destinationStore.Height / 2) + destinationStore.Y);
+                    pebblesPlaced++;
+                }
+                else if(pebblesPlaced % 2 == 0)
+                {
+                    pebble.DestinationX = startingX - x_scale;
+                    pebble.DestinationY = Convert.ToInt32((destinationStore.Height / 2) + destinationStore.Y);
+                    x_scale += 10;
+                    pebblesPlaced++;
+                }
+
             }
 
             destinationStore.Pebbles.Add(pebbleToMove);
