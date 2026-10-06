@@ -23,7 +23,7 @@ namespace Mancala.Models
             ["Pit03"] = 4,
             ["Pit04"] = 5,
             ["Pit05"] = 6,
-            ["BottomLeft"] = 7,
+            ["BottomLeftStore"] = 7,
             ["Pit15"] = 8,
             ["Pit14"] = 9,
             ["Pit13"] = 10,
@@ -34,7 +34,7 @@ namespace Mancala.Models
         public string CurrentMove = "";
 
         //TODO: Make it a stack, not a dictionary
-        public List<string> PitsToUpdate = new List<string>();
+        public List<string> PlacesToUpdate = new List<string>();
 
         public string debugMessage = "starting string";
 
@@ -159,7 +159,7 @@ namespace Mancala.Models
         {
             
 
-            PitsToUpdate.Clear();
+            PlacesToUpdate.Clear();
             PebblesToMove.Clear();
 
             int arrayIndexToStart = GameBoardDictionary[CurrentMove];
@@ -177,7 +177,7 @@ namespace Mancala.Models
 
                 GameBoard[arrayIndexToStart]++;
 
-                PitsToUpdate.Add(GameBoardDictionary.Where(x => x.Value == arrayIndexToStart).First().Key);
+                PlacesToUpdate.Add(GameBoardDictionary.Where(x => x.Value == arrayIndexToStart).First().Key);
             }
 
             if (CurrentPlayer == "Left")
