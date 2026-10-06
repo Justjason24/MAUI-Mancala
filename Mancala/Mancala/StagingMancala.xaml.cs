@@ -43,7 +43,7 @@ public partial class StagingMancala : ContentPage
         }
     }
 
-    private void OnPointerPressed(object sender, PointerEventArgs e)
+    private async void OnPointerPressed(object sender, PointerEventArgs e)
     {
         Console.WriteLine("I am here");
         var point = e.GetPosition((View)sender);
@@ -57,10 +57,17 @@ public partial class StagingMancala : ContentPage
 
         if(!String.IsNullOrEmpty(pitClicked))
         {
-            GameState.ConvertPitClickedToMove(pitClicked);
-            GameState.Update();
+            bool validMove = GameState.ConvertPitClickedToMove(pitClicked);
 
-            gameDrawable.UpdateUI();
+            if (validMove)
+            {
+                GameState.MoveLog.Add(pitClicked);
+
+                GameState.Update();
+                gameDrawable.UpdateUI();
+            }
+            else
+                await DisplayAlert("Wrong side moved", "Retry move", "OK");
         }
 
         Console.WriteLine("idk");
