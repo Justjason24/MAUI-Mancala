@@ -23,6 +23,7 @@ namespace Mancala.Staging
 
             DrawGameStores(canvas, rect);
 
+            DrawDebugRectsAroundStore(canvas, rect);
 
             // pit logic
             float pitRadius = 40;
@@ -309,6 +310,14 @@ namespace Mancala.Staging
                 canvas.FillRoundedRectangle(store.X, store.Y, rect.Width - 20, store.Height, 25);
 
             }
+        }
+
+        public void DrawDebugRectsAroundStore(ICanvas canvas, RectF dirtyRect)
+        {
+            canvas.StrokeColor = Colors.MediumPurple;
+            canvas.FillColor = Colors.MediumOrchid;
+            canvas.DrawRectangle(10, 10, 355.2F, 100);
+            canvas.DrawRectangle(10, 648.8F, 355.2F, 100);
         }
     }
 }
