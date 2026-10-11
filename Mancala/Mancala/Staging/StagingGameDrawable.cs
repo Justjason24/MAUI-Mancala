@@ -25,43 +25,7 @@ namespace Mancala.Staging
             DrawGameStores(canvas, rect);
 
             DrawDebugRectsAroundStore(canvas, rect);
-
-            // pit logic
-            float pitRadius = 40;
-            var workingVerticalSpace = rect.Height - this.GameState.Stores.Sum(s => s.Height) - 10 - 10; // 10 padding on top store and bottom
-            var verticalSpacePerPitToWorkWith = workingVerticalSpace / 6; // 89.3
-            var verticalPointer = 110 + verticalSpacePerPitToWorkWith;
-            float pitY = (verticalPointer + 110) / 2.0f;
-
-            // left column of pits
-            // this is more than spaghetti code, this is a whole olive garden create your own pasta special
-            for (int i = 0; i < 6; i++) // six pits
-            {
-                // we know where to place the first pit so just increment the next location by the verticalSpaceToworkwithperPit
-                if (i != 0)
-                {
-                    pitY += verticalSpacePerPitToWorkWith;
-                }
-
-
-                canvas.FillColor = Colors.White;
-                canvas.FillCircle(100, pitY, 40); // first pit drawn (top left) center point is at 100, 154, 40 = radius
-                Console.WriteLine();
-            }
-
-            pitY = (verticalPointer + 110) / 2.0f;
-
-            // right column of pits
-            for (int i = 0; i < 6; i++) // six pits
-            {
-                if (i != 0)
-                {
-                    pitY += verticalSpacePerPitToWorkWith;
-                }
-                canvas.FillColor = Colors.White;
-                canvas.FillCircle(250, pitY, 40);
-                Console.WriteLine();
-            }
+            DrawPits(canvas, rect);
 
             //DrawDebugPitRects(canvas);
             SetPebbleCoordsNextTick();
@@ -155,6 +119,47 @@ namespace Mancala.Staging
             //canvas.FillCircle(105, 240, 5);
             //canvas.FillCircle(105, 250, 5);
 
+        }
+
+        public void DrawPits(ICanvas canvas, RectF rect)
+        {
+
+            // pit logic
+            float pitRadius = 40;
+            var workingVerticalSpace = rect.Height - this.GameState.Stores.Sum(s => s.Height) - 10 - 10; // 10 padding on top store and bottom
+            var verticalSpacePerPitToWorkWith = workingVerticalSpace / 6; // 89.3
+            var verticalPointer = 110 + verticalSpacePerPitToWorkWith;
+            float pitY = (verticalPointer + 110) / 2.0f;
+
+            // left column of pits
+            // this is more than spaghetti code, this is a whole olive garden create your own pasta special
+            for (int i = 0; i < 6; i++) // six pits
+            {
+                // we know where to place the first pit so just increment the next location by the verticalSpaceToworkwithperPit
+                if (i != 0)
+                {
+                    pitY += verticalSpacePerPitToWorkWith;
+                }
+
+
+                canvas.FillColor = Colors.White;
+                canvas.FillCircle(100, pitY, 40); // first pit drawn (top left) center point is at 100, 154, 40 = radius
+                Console.WriteLine();
+            }
+
+            pitY = (verticalPointer + 110) / 2.0f;
+
+            // right column of pits
+            for (int i = 0; i < 6; i++) // six pits
+            {
+                if (i != 0)
+                {
+                    pitY += verticalSpacePerPitToWorkWith;
+                }
+                canvas.FillColor = Colors.White;
+                canvas.FillCircle(250, pitY, 40);
+                Console.WriteLine();
+            }
         }
 
         public void DrawPebbles(ICanvas canvas)
