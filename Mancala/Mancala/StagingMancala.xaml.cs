@@ -8,6 +8,8 @@ public partial class StagingMancala : ContentPage
     private bool gameRunning = false;
     private StagingGameDrawable gameDrawable;
 
+    bool debug = true;
+
     public GameState GameState = new Mancala.Models.GameState();
 
     public StagingMancala()
@@ -21,9 +23,19 @@ public partial class StagingMancala : ContentPage
         gameDrawable = (StagingGameDrawable)StagingGameScreen.Drawable;
 
         //PSEUDO data binding. The Drawable and this class are pointed to the same instance.
-        var gameState = new GameState();
-        gameDrawable.GameState = gameState;
-        this.GameState = gameState;
+        if (!debug)
+        {
+            var gameState = new GameState();
+            gameDrawable.GameState = gameState;
+            this.GameState = gameState;
+        }
+        else
+        {
+            var gameState = new GameState("debug");
+            gameDrawable.GameState = gameState;
+            this.GameState = gameState;
+        }
+
 
         StartGameLoop();
     }

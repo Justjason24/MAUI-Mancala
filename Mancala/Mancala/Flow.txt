@@ -101,3 +101,13 @@ Wait, just realized I still need to move the Pits logic to its own method. Let m
  - Create DrawPitHighlit() method for the pits that can be selected. Call this first to create the 'outline' and then draw the pit on top.
 
  BOOM. Got the above two methods done. The next thing I'm going to work on is keeping the current player color when the last pebble lands in a store.
+
+ Got that done. The next thing I wanna do is 2 things.
+ 1. Make a 'fast-forward' game state debug helper. Basically, on start skip to an arrangement of pebbles for easier debugging.
+ 2. Once the above is done, I can work the opposite capture mechanic of Mancala. Essentially if the last pebble lands in an empty pit on the same players side,
+	you capture on the opponents pebbles across from it.
+
+I have a pic on my phone of the conditions that would trigger an opposte capture. Going to work on the debug gamestate and then work on that logic.
+
+Signing off. All you need to do next time jason is find a configuration that to easily trigger an opposte capture. We have a new GameState constructor. The small
+	pain is that you have to manually assing pebbles to the Pits and Stores in the DebugRelationship method and the GameBoard in the ctor.

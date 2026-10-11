@@ -61,5 +61,29 @@ namespace Mancala
 
             return pitsToReturn.OrderBy(x => x.Name).ToList();
         }
+
+        public static GameState CreateDebugGameState()
+        {
+            var gameState = new GameState();
+
+            gameState.GameBoard[0] = 5;
+            gameState.GameBoard[1] = 2;
+            gameState.GameBoard[2] = 1;
+            gameState.GameBoard[3] = 0;
+            gameState.GameBoard[4] = 0;
+            gameState.GameBoard[5] = 0;
+            gameState.GameBoard[6] = 0;
+            gameState.GameBoard[7] = 8;
+            gameState.GameBoard[8] = 4;
+            gameState.GameBoard[9] = 3;
+            gameState.GameBoard[10] = 3;
+            gameState.GameBoard[11] = 3;
+            gameState.GameBoard[12] = 3;
+            gameState.GameBoard[13] = 3;
+            gameState.GameBoard[14] = 3;
+
+
+            return gameState;
+        }
     }
 }
