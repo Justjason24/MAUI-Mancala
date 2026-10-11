@@ -25,6 +25,8 @@ namespace Mancala.Staging
             DrawGameStores(canvas, rect);
 
             DrawDebugRectsAroundStore(canvas, rect);
+
+            HighlightValidPits(canvas, rect);
             DrawPits(canvas, rect);
 
             //DrawDebugPitRects(canvas);
@@ -125,7 +127,6 @@ namespace Mancala.Staging
         {
 
             // pit logic
-            float pitRadius = 40;
             var workingVerticalSpace = rect.Height - this.GameState.Stores.Sum(s => s.Height) - 10 - 10; // 10 padding on top store and bottom
             var verticalSpacePerPitToWorkWith = workingVerticalSpace / 6; // 89.3
             var verticalPointer = 110 + verticalSpacePerPitToWorkWith;
@@ -160,6 +161,41 @@ namespace Mancala.Staging
                 canvas.FillCircle(250, pitY, 40);
                 Console.WriteLine();
             }
+        }
+
+        public void HighlightValidPits(ICanvas canvas, RectF rect)
+        {
+            float x_placement;
+            float y_placement = 154.7F;
+
+            canvas.FillColor = Colors.DarkOliveGreen;
+
+            var pitsToLookAt = GameHelper.GetLeftOrRightPits(GameState.Pits, GameState.CurrentPlayer);
+
+            if (GameState.CurrentPlayer == "Left")
+                x_placement = 100;
+
+            else
+                x_placement = 250;
+
+
+
+            foreach(var pit in pitsToLookAt)
+            {
+                if(pit.Pebbles.Count != 0)
+                {
+                    canvas.FillCircle(x_placement, y_placement, 43);
+                }
+
+                y_placement += 89.5F;
+            }
+
+
+            Console.WriteLine("debug");
+
+            //canvas.FillCircle(x_placement, 154.7F, 43);
+            //canvas.FillCircle(x_placement, 244.2F, 43);
+
         }
 
         public void DrawPebbles(ICanvas canvas)

@@ -35,5 +35,31 @@ namespace Mancala
 
             return pebblesToRemoveFromSelectedPit;
         }
+
+        public static List<Mancala.Staging.Pit> GetLeftOrRightPits(List<Mancala.Staging.Pit> pits, string currentPlayer)
+        {
+            if (currentPlayer.Trim() != "Left" && currentPlayer.Trim() != "Right")
+                throw new Exception("Current ");
+
+            var pitsToReturn = new List<Mancala.Staging.Pit>();
+
+            // All pits on the leftside are named "Pit0X" and the right is "Pit1X"
+            // Will look through pit names and if the har at position 4 is a '0' we know it's left and vice versa;
+
+            char leftOrRightChar;
+
+            if (currentPlayer.Trim() == "Left")
+                leftOrRightChar = '0';
+            else
+                leftOrRightChar = '1';
+
+            foreach(var pit in pits)
+            {
+                if (pit.Name.ToCharArray().ElementAt(3) == leftOrRightChar)
+                    pitsToReturn.Add(pit);
+            }
+
+            return pitsToReturn.OrderBy(x => x.Name).ToList();
+        }
     }
 }
