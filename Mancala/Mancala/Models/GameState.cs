@@ -181,10 +181,21 @@ namespace Mancala.Models
                 PlacesToUpdate.Add(GameBoardDictionary.Where(x => x.Value == arrayIndexToStart).First().Key);
             }
 
-            if (CurrentPlayer == "Left")
-                CurrentPlayer = "Right";
-            else
-                CurrentPlayer = "Left";
+
+            // if the last place to update is a store, that means the last pebble landed there which allows the player to go again.
+            // Only flip the player if the last place to update is NOT a store.
+
+            Console.WriteLine();
+            if(!PlacesToUpdate.Last().Contains("Store"))
+            {
+                if (CurrentPlayer == "Left")
+                    CurrentPlayer = "Right";
+                else
+                    CurrentPlayer = "Left";
+            }
+
+
+
 
 
             this.PebblesToMove = GameHelper.CreateCopyOfPebblesFromSelectedPit(this.Pits, this.CurrentMove);
