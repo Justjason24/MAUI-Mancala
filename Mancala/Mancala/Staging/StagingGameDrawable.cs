@@ -355,15 +355,22 @@ namespace Mancala.Staging
 
         public void UpdateUI()
         {
-            if (this.GameState.PitsToUpdate.Count != this.GameState.PebblesToMove.Count)
+            if (this.GameState.PlacesToUpdate.Count != this.GameState.PebblesToMove.Count)
                 throw new Exception("Moving more pebbles than pits or vice versa");
 
 
             for(int i = 0; i < this.GameState.PebblesToMove.Count; i++)
             {
                 var pebble = this.GameState.PebblesToMove[i];
-                string pitToMoveTo = GameState.PitsToUpdate.ElementAt(i);
-                DebugAnimatePebblesToPit(pebble, pitToMoveTo);
+                string placeToUpdate = GameState.PlacesToUpdate.ElementAt(i);
+
+                if(placeToUpdate.Contains("Pit"))
+                    DebugAnimatePebblesToPit(pebble, placeToUpdate);
+
+
+                else
+                    AnimatePebbleToStore(pebble, placeToUpdate);
+
             }
 
         }

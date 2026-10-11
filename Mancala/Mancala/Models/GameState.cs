@@ -23,7 +23,7 @@ namespace Mancala.Models
             ["Pit03"] = 4,
             ["Pit04"] = 5,
             ["Pit05"] = 6,
-            ["BottomLeft"] = 7,
+            ["BottomLeftStore"] = 7,
             ["Pit15"] = 8,
             ["Pit14"] = 9,
             ["Pit13"] = 10,
@@ -33,8 +33,7 @@ namespace Mancala.Models
         };
         public string CurrentMove = "";
 
-        //TODO: Make it a stack, not a dictionary
-        public List<string> PitsToUpdate = new List<string>();
+        public List<string> PlacesToUpdate = new List<string>();
 
         public string debugMessage = "starting string";
 
@@ -127,24 +126,26 @@ namespace Mancala.Models
             new(10, 648.8F, 355.2F, "BottomLeftStore")
         };
 
+        public List<string> MoveLog = new List<string>();
 
         public GameState()
         {
             SetPebbletPitRelationship();
         }
 
-        public void ConvertPitClickedToMove(string pitClicked)
+        public bool ConvertPitClickedToMove(string pitClicked)
         {
             string pitNumberString = pitClicked.Replace("Pit", "");
 
             // these shouldn't be exceptions in the future. I dont want the game to crash if there was a misclick or accident
             if (pitNumberString.StartsWith("0") && this.CurrentPlayer == "Right")
-                throw new Exception("Invalid Move");
+                return false;
 
             if (pitNumberString.StartsWith("1") && this.CurrentPlayer == "Left")
-                throw new Exception("Invalid Move");
+                return false;
 
             this.CurrentMove = pitClicked;
+            return true;
         }
 
         /// <summary>
@@ -159,7 +160,7 @@ namespace Mancala.Models
         {
             
 
-            PitsToUpdate.Clear();
+            PlacesToUpdate.Clear();
             PebblesToMove.Clear();
 
             int arrayIndexToStart = GameBoardDictionary[CurrentMove];
@@ -177,7 +178,7 @@ namespace Mancala.Models
 
                 GameBoard[arrayIndexToStart]++;
 
-                PitsToUpdate.Add(GameBoardDictionary.Where(x => x.Value == arrayIndexToStart).First().Key);
+                PlacesToUpdate.Add(GameBoardDictionary.Where(x => x.Value == arrayIndexToStart).First().Key);
             }
 
             if (CurrentPlayer == "Left")
