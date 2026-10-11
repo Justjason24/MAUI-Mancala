@@ -91,3 +91,11 @@ In addition, I also have some 'pseudo' data binding. Thinks to the power of poin
 Idk how far I'll get but I'm working on the GameStore logic. It needs some love and have been skipping out on it to make the proof-of-concept come together.
 I need to make another animate method AnimateToStore(Pebble p, string storeName) similar to the Pit animate method. Also need to consider how to arrange pebbles
 	belonging to the store. Working on this now in my next branch.
+
+10/11
+HAPPY WEDDING ANNIVERSAY to me and my wife! Our first anniversary and heres to many more. Why am I programming on my anniversary? Well, she's doing a craft project
+	for an hour and we got some Sunday football on so may as well get some work done on this project. 
+Looks like I'm still working on my pit and store branch. One last thing I wanna do is highlight the pits of the play that's currenlty playing. Then merge branch.
+Wait, just realized I still need to move the Pits logic to its own method. Let me just merge the branch and we will knock out the following: 
+ - Create DrawPits() method
+ - Create DrawPitHighlit() method for the pits that can be selected. Call this first to create the 'outline' and then draw the pit on top.
