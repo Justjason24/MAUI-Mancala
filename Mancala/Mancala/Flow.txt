@@ -111,3 +111,9 @@ I have a pic on my phone of the conditions that would trigger an opposte capture
 
 Signing off. All you need to do next time jason is find a configuration that to easily trigger an opposte capture. We have a new GameState constructor. The small
 	pain is that you have to manually assing pebbles to the Pits and Stores in the DebugRelationship method and the GameBoard in the ctor.
+
+10/12
+Didn't really journal as much as I should here. Just been working on my opposite capture logic and realizing this thing is held up by duct tape. :( Few random thoughts
+- I wish the animatePebble method had an override too for a List<> lol. even though I changed from that.
+- The though of screen resolution and aspect ratios are tripping me up. I keep dwelling on that refactor coming up.
+Good news is that we're SO close from this thing being a done state; regardless of how bad the code is. 

@@ -23,18 +23,9 @@ public partial class StagingMancala : ContentPage
         gameDrawable = (StagingGameDrawable)StagingGameScreen.Drawable;
 
         //PSEUDO data binding. The Drawable and this class are pointed to the same instance.
-        if (!debug)
-        {
-            var gameState = new GameState();
-            gameDrawable.GameState = gameState;
-            this.GameState = gameState;
-        }
-        else
-        {
-            var gameState = new GameState("debug");
-            gameDrawable.GameState = gameState;
-            this.GameState = gameState;
-        }
+        var gameState = new GameState();
+        gameDrawable.GameState = gameState;
+        this.GameState = gameState;
 
 
         StartGameLoop();

@@ -62,28 +62,31 @@ namespace Mancala
             return pitsToReturn.OrderBy(x => x.Name).ToList();
         }
 
-        public static GameState CreateDebugGameState()
+        public static string CheckForOppositeCapture(GameState gameState, string PitToCheck)
         {
-            var gameState = new GameState();
+            if (PitToCheck.Contains("Store"))
+                return "";
 
-            gameState.GameBoard[0] = 5;
-            gameState.GameBoard[1] = 2;
-            gameState.GameBoard[2] = 1;
-            gameState.GameBoard[3] = 0;
-            gameState.GameBoard[4] = 0;
-            gameState.GameBoard[5] = 0;
-            gameState.GameBoard[6] = 0;
-            gameState.GameBoard[7] = 8;
-            gameState.GameBoard[8] = 4;
-            gameState.GameBoard[9] = 3;
-            gameState.GameBoard[10] = 3;
-            gameState.GameBoard[11] = 3;
-            gameState.GameBoard[12] = 3;
-            gameState.GameBoard[13] = 3;
-            gameState.GameBoard[14] = 3;
+            var pit = gameState.Pits.Where(x => x.Name == PitToCheck).First();
 
+            if(pit.Pebbles.Count == 0)
+            {
+                char oppositePitChar = '\0';
 
-            return gameState;
+                if (pit.Name.ElementAt(3) == '0')
+                    oppositePitChar = '1';
+
+                else
+                    oppositePitChar = '0';
+
+                var charArray = pit.Name.ToCharArray();
+                charArray[3] = oppositePitChar;
+
+                return new string(charArray);
+                 
+            }
+
+            return "";
         }
     }
 }

@@ -402,15 +402,37 @@ namespace Mancala.Staging
 
             for(int i = 0; i < this.GameState.PebblesToMove.Count; i++)
             {
+
+
                 var pebble = this.GameState.PebblesToMove[i];
                 string placeToUpdate = GameState.PlacesToUpdate.ElementAt(i);
+                string pitToStealFrom = "";
 
-                if(placeToUpdate.Contains("Pit"))
+                if (i == this.GameState.PebblesToMove.Count - 1)
+                {
+                    pitToStealFrom = GameHelper.CheckForOppositeCapture(this.GameState, placeToUpdate);
+                }
+
+                if (placeToUpdate.Contains("Pit"))
                     DebugAnimatePebblesToPit(pebble, placeToUpdate);
-
 
                 else
                     AnimatePebbleToStore(pebble, placeToUpdate);
+
+                // opposite capture
+                if(!String.IsNullOrEmpty(pitToStealFrom))
+                {
+                    var pebbles = GameHelper.CreateCopyOfPebblesFromSelectedPit(this.GameState.Pits, pitToStealFrom);
+
+                    this.GameState.Pits.Where(x => x.Name == pitToStealFrom).First().Pebbles.Clear();
+
+                    foreach(var _pebble in pebbles)
+                    {
+                        DebugAnimatePebblesToPit(_pebble, placeToUpdate);
+                    }
+
+                    Console.WriteLine();
+                }
 
             }
 

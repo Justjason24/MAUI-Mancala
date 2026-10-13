@@ -1,5 +1,4 @@
-﻿using Android.App;
-using Mancala.Staging;
+﻿using Mancala.Staging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -134,26 +133,6 @@ namespace Mancala.Models
             SetPebbletPitRelationship();
         }
 
-        public GameState(string debugState)
-        {
-            GameBoard[0] = 5;
-            GameBoard[1] = 4;
-            GameBoard[2] = 4;
-            GameBoard[3] = 4;
-            GameBoard[4] = 2;
-            GameBoard[5] = 4;
-            GameBoard[6] = 0;
-            GameBoard[7] = 0;
-            GameBoard[8] = 5;
-            GameBoard[9] = 5;
-            GameBoard[10] = 5;
-            GameBoard[11] = 5;
-            GameBoard[12] = 5;
-            GameBoard[13] = 5;
-            GameBoard[14] = 5;
-
-            SetDebugPebblePitRelationship();
-        }
 
         public bool ConvertPitClickedToMove(string pitClicked)
         {
@@ -245,17 +224,6 @@ namespace Mancala.Models
 
                 counter += 4; // because each pit starts with 4 pebbles
             }
-        }
-
-        public void SetDebugPebblePitRelationship()
-        {
-            Stores.Where(x => x.Name == "TopRightStore").First().Pebbles.AddRange(this.Pebbles.Where(x => x.ID <= 5));
-            Pits.Where(x => x.Name == "Pit00").First().Pebbles.AddRange(this.Pebbles.Where(x => x.ID >= 6 && x.ID <= 7));
-            Pits.Where(x => x.Name == "Pit01").First().Pebbles.AddRange(this.Pebbles.Where(x => x.ID == 8));
-            Stores.Where(x => x.Name == "BottomLeftStore").First().Pebbles.AddRange(this.Pebbles.Where(x => x.ID >= 9 && x.ID <= 16));
-            Pits.Where(x => x.Name == "Pit15").First().Pebbles.AddRange(this.Pebbles.Where(x => x.ID >= 17 && x.ID <= 20));
-            Pits.Where(x => x.Name == "Pit14").First().Pebbles.AddRange(this.Pebbles.Where(x => x.ID >= 21 && x.ID <= 23));
-
         }
 
         public void RemovePebblesFromSelectedPit()
