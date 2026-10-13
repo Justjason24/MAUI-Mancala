@@ -114,6 +114,10 @@ Signing off. All you need to do next time jason is find a configuration that to 
 
 10/12
 Didn't really journal as much as I should here. Just been working on my opposite capture logic and realizing this thing is held up by duct tape. :( Few random thoughts
-- I wish the animatePebble method had an override too for a List<> lol. even though I changed from that.
-- The though of screen resolution and aspect ratios are tripping me up. I keep dwelling on that refactor coming up.
+	- I wish the animatePebble method had an override too for a List<> lol. even though I changed from that.
+	- The though of screen resolution and aspect ratios are tripping me up. I keep dwelling on that refactor coming up.
 Good news is that we're SO close from this thing being a done state; regardless of how bad the code is. 
+
+Opposite capture works so thats nice! Been researching some solutions on how I can make this game work for different aspect ratios / resolutions since I'm using 
+	hard coded pixel values. The easiest solution it appears is to design in virtual space, and scale from there. We know what the Windows Machine width and height is.
+	I just need to hard code the stores and then apply a scale. RectFWidth / ChosenMaxWidht (take the min and do the same for height) then do a translate and scale.
